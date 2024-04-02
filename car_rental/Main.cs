@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace car_rental
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         private DatabaseManager dbManager;
 
-        public Form1()
+        public Main()
         {
             InitializeComponent();
             dbManager = new DatabaseManager();
