@@ -25,6 +25,7 @@ namespace car_rental
             if (dbManager.ConnectToDatabase())
             {
                 // Połączenie zostało nawiązane
+                //
             }
             else
             {
