@@ -19,9 +19,8 @@ namespace car_rental
         {
             InitializeComponent();
             FlipPictureBoxHorizontally(pictureBox3);
-            this.button7.Click += new EventHandler(Button7_Click_7);
-
-
+            this.guna2Button6.Click += new EventHandler(Button7_Click_7);
+            ButtonsColor();
         }
         public void FlipPictureBoxHorizontally(PictureBox pictureBox)
         {
@@ -38,13 +37,41 @@ namespace car_rental
             }
         }
 
-
         private void Button7_Click_7(object sender, EventArgs e)
         {
-            admin_panel adminPanel = new admin_panel();
+            Admin_panel adminPanel = new Admin_panel();
             adminPanel.FormClosed += (s, args) => this.Close();
             this.Hide();
             adminPanel.Show();
+        }
+
+        private void Main_frame_Load(object sender, EventArgs e)
+        {
+            string hexColor = "#FFFAE2"; 
+            Color myColor = ColorTranslator.FromHtml(hexColor);
+            this.BackColor = myColor;
+        }
+
+        public void ButtonsColor()
+        {
+            // Definiuj kolor, który chcesz użyć
+            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); // Przykładowy kolor szesnastkowy
+
+            // Przechodź przez wszystkie kontrolki na formularzu
+            foreach (Control control in this.Controls)
+            {
+                // Sprawdź, czy kontrolka jest przyciskiem Guna.UI2
+                if (control is Guna.UI2.WinForms.Guna2Button)
+                {
+                    Guna.UI2.WinForms.Guna2Button button = (Guna.UI2.WinForms.Guna2Button)control;
+
+                    // Ustaw kolor tła przycisku
+                    button.FillColor = buttonsColor;
+
+                    // Opcjonalnie: Ustaw kolor czcionki, jeśli potrzebujesz
+                    button.ForeColor = Color.White;
+                }
+            }
         }
     }
 }
