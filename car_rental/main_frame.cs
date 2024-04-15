@@ -61,9 +61,8 @@ namespace car_rental
             foreach (Control control in this.Controls)
             {
                 // Sprawdź, czy kontrolka jest przyciskiem Guna.UI2
-                if (control is Guna.UI2.WinForms.Guna2Button)
+                if (control is Guna.UI2.WinForms.Guna2Button button)
                 {
-                    Guna.UI2.WinForms.Guna2Button button = (Guna.UI2.WinForms.Guna2Button)control;
 
                     // Ustaw kolor tła przycisku
                     button.FillColor = buttonsColor;

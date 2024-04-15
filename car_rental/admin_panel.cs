@@ -70,5 +70,13 @@ namespace car_rental
                 pictureBox.Image = bmp;
             }
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            Users users = new Users();
+            users.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            users.Show();
+        }
     }
 }
