@@ -15,11 +15,14 @@ namespace car_rental
         public startFrame()
         {
             InitializeComponent();
+
         }
 
         private void startFrame_Load(object sender, EventArgs e)
         {
-
+            string hexColor = "#FFFAE2";
+            Color myColor = ColorTranslator.FromHtml(hexColor);
+            this.BackColor = myColor;
         }
     }
 }

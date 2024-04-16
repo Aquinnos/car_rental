@@ -32,8 +32,8 @@
             // 
             // startFrame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "startFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
