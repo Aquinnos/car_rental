@@ -24,10 +24,5 @@ namespace car_rental
             Color myColor = ColorTranslator.FromHtml(hexColor);
             this.BackColor = myColor;
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
