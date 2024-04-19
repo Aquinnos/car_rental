@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guna.UI2.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,20 +11,29 @@ using System.Windows.Forms;
 
 namespace car_rental
 {
-    public partial class Admin_panel : Form
+    public partial class Del_users : Form
     {
-        public Admin_panel()
+        public Del_users()
         {
             InitializeComponent();
-            ButtonsColor();
             FlipPictureBoxHorizontally(pictureBox3);
+            ButtonsColor();
         }
 
-        private void admin_panel_Load(object sender, EventArgs e)
+        private void Del_users_Load(object sender, EventArgs e)
         {
             string hexColor = "#FFFAE2";
             Color myColor = ColorTranslator.FromHtml(hexColor);
             this.BackColor = myColor;
+        }
+
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            Admin_panel adminPanel = new Admin_panel();
+            adminPanel.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            adminPanel.Show();
         }
 
         public void ButtonsColor()
@@ -35,9 +45,9 @@ namespace car_rental
             foreach (Control control in this.Controls)
             {
                 // Sprawdź, czy kontrolka jest przyciskiem Guna.UI2
-                if (control is Guna.UI2.WinForms.Guna2Button)
+                if (control is Guna2Button)
                 {
-                    Guna.UI2.WinForms.Guna2Button button = (Guna.UI2.WinForms.Guna2Button)control;
+                    Guna2Button button = (Guna2Button)control;
 
                     // Ustaw kolor tła przycisku
                     button.FillColor = buttonsColor;
@@ -46,14 +56,6 @@ namespace car_rental
                     button.ForeColor = Color.White;
                 }
             }
-        }
-
-        private void guna2Button4_Click(object sender, EventArgs e)
-        {
-            main_frame mainFrame = new main_frame();
-            mainFrame.FormClosed += (s, args) => this.Close();
-            this.Hide();
-            mainFrame.Show();
         }
 
         public void FlipPictureBoxHorizontally(PictureBox pictureBox)
@@ -69,30 +71,6 @@ namespace car_rental
                 // Ustaw odwrócony obraz z powrotem na PictureBox
                 pictureBox.Image = bmp;
             }
-        }
-
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            Users users = new Users();
-            users.FormClosed += (s, args) => this.Close();
-            this.Hide();
-            users.Show();
-        }
-
-        private void guna2Button2_Click(object sender, EventArgs e)
-        {
-            Add_users add_users = new Add_users();
-            add_users.FormClosed += (s, args) => this.Close();
-            this.Hide();
-            add_users.Show();
-        }
-
-        private void guna2Button3_Click(object sender, EventArgs e)
-        {
-            Del_users del_users = new Del_users();
-            del_users.FormClosed += (s, args) => this.Close();
-            this.Hide();
-            del_users.Show();
         }
     }
 }

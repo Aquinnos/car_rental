@@ -19,6 +19,8 @@ namespace car_rental
         public Users()
         {
             InitializeComponent();
+            ButtonsColor();
+            FlipPictureBoxHorizontally(pictureBox3);
         }
 
         private void Users_Load(object sender, EventArgs e)
@@ -39,7 +41,7 @@ namespace car_rental
             string agree = txtBoxAgree.Text;
 
             // Buduj zapytanie SQL z wykorzystaniem filtrów
-            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM users WHERE 1=1"); // 1=1 jest zawsze prawdziwe, więc wszystkie AND są prawidłowe
+            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Users WHERE 1=1");
             if (!string.IsNullOrWhiteSpace(id))
             {
                 queryBuilder.Append(" AND Id = @Id");
@@ -142,5 +144,20 @@ namespace car_rental
                 }
             }
         }
+        public void FlipPictureBoxHorizontally(PictureBox pictureBox)
+        {
+            if (pictureBox.Image != null)
+            {
+                // Utwórz kopię obrazu z PictureBox
+                Bitmap bmp = new Bitmap(pictureBox.Image);
+
+                // Odwróć obraz w poziomie
+                bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
+
+                // Ustaw odwrócony obraz z powrotem na PictureBox
+                pictureBox.Image = bmp;
+            }
+        }
+
     }
 }

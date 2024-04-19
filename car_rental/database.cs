@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Data.SQLite;
 using System.IO;
 using System.Windows.Forms;
@@ -46,4 +46,4 @@ namespace car_rental
             return isConnected;
         }
     }
-}
+} */

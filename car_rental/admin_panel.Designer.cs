@@ -95,7 +95,7 @@
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(166, 46);
             this.guna2Button1.TabIndex = 9;
-            this.guna2Button1.Text = "UŻYTKOWNICY";
+            this.guna2Button1.Text = "Użytkownicy";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // guna2Button2
@@ -113,7 +113,8 @@
             this.guna2Button2.Name = "guna2Button2";
             this.guna2Button2.Size = new System.Drawing.Size(166, 46);
             this.guna2Button2.TabIndex = 10;
-            this.guna2Button2.Text = "DODAWANIE NOWYCH UŻYTKOWNIKÓW";
+            this.guna2Button2.Text = "Dodawanie nowych użytkowników";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // guna2Button3
             // 
@@ -130,7 +131,8 @@
             this.guna2Button3.Name = "guna2Button3";
             this.guna2Button3.Size = new System.Drawing.Size(166, 46);
             this.guna2Button3.TabIndex = 11;
-            this.guna2Button3.Text = "USUWANIE UŻYTKOWNIKÓW";
+            this.guna2Button3.Text = "Usuwanie użytkowników";
+            this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
             // 
             // guna2Button4
             // 
@@ -147,7 +149,7 @@
             this.guna2Button4.Name = "guna2Button4";
             this.guna2Button4.Size = new System.Drawing.Size(166, 46);
             this.guna2Button4.TabIndex = 12;
-            this.guna2Button4.Text = "WYJŚCIE";
+            this.guna2Button4.Text = "Wyjście";
             this.guna2Button4.Click += new System.EventHandler(this.guna2Button4_Click);
             // 
             // Admin_panel

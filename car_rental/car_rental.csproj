@@ -71,6 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add_users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_users.Designer.cs">
+      <DependentUpon>Add_users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin_panel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,12 @@
       <DependentUpon>Admin_panel.cs</DependentUpon>
     </Compile>
     <Compile Include="database.cs" />
+    <Compile Include="Del_users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Del_users.Designer.cs">
+      <DependentUpon>Del_users.cs</DependentUpon>
+    </Compile>
     <Compile Include="main_frame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,8 +104,14 @@
     <Compile Include="Users.Designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Add_users.resx">
+      <DependentUpon>Add_users.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin_panel.resx">
       <DependentUpon>Admin_panel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Del_users.resx">
+      <DependentUpon>Del_users.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="main_frame.resx">
       <DependentUpon>main_frame.cs</DependentUpon>
@@ -110,9 +128,7 @@
     <EmbeddedResource Include="Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="database.sqlite">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="database.sqlite" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
