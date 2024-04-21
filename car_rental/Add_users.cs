@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace car_rental
@@ -83,6 +84,9 @@ namespace car_rental
             string pesel = txtBoxPesel.Text;
             string age = txtBoxAge.Text;
             string isAdmin = txtBoxAdmin.Text;
+
+            txtBoxPass.PasswordChar = '*';
+
 
             // Buduj zapytanie SQL z wykorzystaniem filtrów
             StringBuilder queryBuilder = new StringBuilder("SELECT Id, Username, Password, FirstName, LastName, Pesel, Age, isAdmin FROM Users WHERE 1=1"); 
@@ -176,13 +180,26 @@ namespace car_rental
             string age = txtBoxAge.Text;
             string isAdmin = txtBoxAdmin.Text;
 
+            // Sprawdź, czy wszystkie pola są puste
+            if (string.IsNullOrWhiteSpace(username) &&
+                string.IsNullOrWhiteSpace(password) &&
+                string.IsNullOrWhiteSpace(firstName) &&
+                string.IsNullOrWhiteSpace(lastName) &&
+                string.IsNullOrWhiteSpace(pesel) &&
+                string.IsNullOrWhiteSpace(age))
+            {
+                MessageBox.Show("Nie wpisano żadnego kryterium. Proszę wypełnić przynajmniej jedno pole.", "Brak danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Przerwij dalsze przetwarzanie
+            }
+
+            if (txtBoxPesel.Text.Length != 11)
+            {
+                MessageBox.Show("PESEL musi mieć 11 znaków.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             AddUser(username, password, firstName, lastName, pesel, age, isAdmin);
             RefreshUserList();
-        }
-
-        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
         }
 
         private void AddUser(string username, string password, string firstName, string lastName, string pesel, string age, string isAdmin)
