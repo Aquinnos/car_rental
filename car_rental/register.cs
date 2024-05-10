@@ -16,5 +16,10 @@ namespace car_rental
         {
             InitializeComponent();
         }
+
+        private void register_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

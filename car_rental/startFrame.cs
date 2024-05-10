@@ -59,6 +59,13 @@ namespace car_rental
                 pictureBox.Image = flippedBitmap;
             }
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            register Registration = new register();
+            this.Hide();
+            Registration.Show();
+        }
     }
 }
 

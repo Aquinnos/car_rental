@@ -127,6 +127,7 @@ namespace car_rental
             this.guna2Button1.Size = new System.Drawing.Size(157, 28);
             this.guna2Button1.TabIndex = 5;
             this.guna2Button1.Text = "ZAREJESTRUJ SIĘ";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // guna2Button2
             // 
