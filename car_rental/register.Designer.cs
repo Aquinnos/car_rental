@@ -31,30 +31,36 @@
             this.guna2Shapes1 = new Guna.UI2.WinForms.Guna2Shapes();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.imie = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.imie = new Guna.UI2.WinForms.Guna2TextBox();
+            this.nazwisko = new Guna.UI2.WinForms.Guna2TextBox();
+            this.nazwa = new Guna.UI2.WinForms.Guna2TextBox();
+            this.haslo = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2Shapes1
             // 
+            this.guna2Shapes1.BackColor = System.Drawing.Color.Transparent;
             this.guna2Shapes1.BorderColor = System.Drawing.Color.ForestGreen;
             this.guna2Shapes1.BorderThickness = 0;
             this.guna2Shapes1.FillColor = System.Drawing.Color.Sienna;
             this.guna2Shapes1.LineEndCap = System.Drawing.Drawing2D.LineCap.Square;
             this.guna2Shapes1.LineStartCap = System.Drawing.Drawing2D.LineCap.Round;
-            this.guna2Shapes1.Location = new System.Drawing.Point(242, 41);
+            this.guna2Shapes1.Location = new System.Drawing.Point(203, 32);
             this.guna2Shapes1.Name = "guna2Shapes1";
             this.guna2Shapes1.PolygonSkip = 1;
             this.guna2Shapes1.Rotate = 0F;
             this.guna2Shapes1.RoundedRadius = 10;
             this.guna2Shapes1.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rounded;
-            this.guna2Shapes1.Size = new System.Drawing.Size(315, 381);
+            this.guna2Shapes1.Size = new System.Drawing.Size(385, 391);
             this.guna2Shapes1.TabIndex = 0;
             this.guna2Shapes1.Text = "guna2Shapes1";
+            this.guna2Shapes1.UseTransparentBackground = true;
             this.guna2Shapes1.Zoom = 80;
             // 
             // pictureBox2
@@ -79,41 +85,164 @@
             // 
             // imie
             // 
-            this.imie.Location = new System.Drawing.Point(281, 127);
+            this.imie.AutoRoundedCorners = true;
+            this.imie.BackColor = System.Drawing.Color.Sienna;
+            this.imie.BorderColor = System.Drawing.Color.Sienna;
+            this.imie.BorderRadius = 10;
+            this.imie.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.imie.DefaultText = "";
+            this.imie.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.imie.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.imie.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.imie.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.imie.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.imie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.imie.ForeColor = System.Drawing.Color.Black;
+            this.imie.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.imie.Location = new System.Drawing.Point(255, 121);
+            this.imie.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.imie.Name = "imie";
-            this.imie.Size = new System.Drawing.Size(238, 26);
-            this.imie.TabIndex = 3;
+            this.imie.PasswordChar = '\0';
+            this.imie.PlaceholderForeColor = System.Drawing.Color.Sienna;
+            this.imie.PlaceholderText = "";
+            this.imie.SelectedText = "";
+            this.imie.Size = new System.Drawing.Size(277, 23);
+            this.imie.TabIndex = 7;
             // 
-            // textBox1
+            // nazwisko
             // 
-            this.textBox1.Location = new System.Drawing.Point(281, 172);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(238, 26);
-            this.textBox1.TabIndex = 4;
+            this.nazwisko.AutoRoundedCorners = true;
+            this.nazwisko.BackColor = System.Drawing.Color.Sienna;
+            this.nazwisko.BorderColor = System.Drawing.Color.Sienna;
+            this.nazwisko.BorderRadius = 10;
+            this.nazwisko.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.nazwisko.DefaultText = "";
+            this.nazwisko.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.nazwisko.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.nazwisko.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.nazwisko.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.nazwisko.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.nazwisko.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.nazwisko.ForeColor = System.Drawing.Color.Black;
+            this.nazwisko.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.nazwisko.Location = new System.Drawing.Point(255, 177);
+            this.nazwisko.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.nazwisko.Name = "nazwisko";
+            this.nazwisko.PasswordChar = '\0';
+            this.nazwisko.PlaceholderForeColor = System.Drawing.Color.Sienna;
+            this.nazwisko.PlaceholderText = "";
+            this.nazwisko.SelectedText = "";
+            this.nazwisko.Size = new System.Drawing.Size(277, 23);
+            this.nazwisko.TabIndex = 8;
             // 
-            // textBox2
+            // nazwa
             // 
-            this.textBox2.Location = new System.Drawing.Point(281, 225);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(238, 26);
-            this.textBox2.TabIndex = 5;
+            this.nazwa.AutoRoundedCorners = true;
+            this.nazwa.BackColor = System.Drawing.Color.Sienna;
+            this.nazwa.BorderColor = System.Drawing.Color.Sienna;
+            this.nazwa.BorderRadius = 10;
+            this.nazwa.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.nazwa.DefaultText = "";
+            this.nazwa.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.nazwa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.nazwa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.nazwa.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.nazwa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.nazwa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.nazwa.ForeColor = System.Drawing.Color.Black;
+            this.nazwa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.nazwa.Location = new System.Drawing.Point(255, 230);
+            this.nazwa.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.nazwa.Name = "nazwa";
+            this.nazwa.PasswordChar = '\0';
+            this.nazwa.PlaceholderForeColor = System.Drawing.Color.Sienna;
+            this.nazwa.PlaceholderText = "";
+            this.nazwa.SelectedText = "";
+            this.nazwa.Size = new System.Drawing.Size(277, 23);
+            this.nazwa.TabIndex = 9;
             // 
-            // textBox3
+            // haslo
             // 
-            this.textBox3.Location = new System.Drawing.Point(281, 278);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(238, 26);
-            this.textBox3.TabIndex = 6;
+            this.haslo.AutoRoundedCorners = true;
+            this.haslo.BackColor = System.Drawing.Color.Sienna;
+            this.haslo.BorderColor = System.Drawing.Color.Sienna;
+            this.haslo.BorderRadius = 10;
+            this.haslo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.haslo.DefaultText = "";
+            this.haslo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.haslo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.haslo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.haslo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.haslo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.haslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.haslo.ForeColor = System.Drawing.Color.Black;
+            this.haslo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.haslo.Location = new System.Drawing.Point(255, 283);
+            this.haslo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.haslo.Name = "haslo";
+            this.haslo.PasswordChar = '\0';
+            this.haslo.PlaceholderForeColor = System.Drawing.Color.Sienna;
+            this.haslo.PlaceholderText = "";
+            this.haslo.SelectedText = "";
+            this.haslo.Size = new System.Drawing.Size(277, 23);
+            this.haslo.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Sienna;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(251, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 20);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Imię";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Sienna;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(251, 152);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 20);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Nazwisko";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Sienna;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(251, 205);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(147, 20);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Nazwa użytkownika";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Sienna;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(251, 258);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(51, 20);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Hasło";
             // 
             // register
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(765, 398);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.haslo);
+            this.Controls.Add(this.nazwa);
+            this.Controls.Add(this.nazwisko);
             this.Controls.Add(this.imie);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -122,7 +251,6 @@
             this.Name = "register";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "register";
-            this.Load += new System.EventHandler(this.register_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -135,9 +263,13 @@
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.TextBox imie;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private Guna.UI2.WinForms.Guna2TextBox imie;
+        private Guna.UI2.WinForms.Guna2TextBox nazwisko;
+        private Guna.UI2.WinForms.Guna2TextBox nazwa;
+        private Guna.UI2.WinForms.Guna2TextBox haslo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

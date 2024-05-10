@@ -17,9 +17,9 @@ namespace car_rental
             InitializeComponent();
         }
 
-        private void register_Load(object sender, EventArgs e)
+        public void ShapeColor()
         {
-
+            guna2Shapes1.BackColor = System.Drawing.ColorTranslator.FromHtml("#714A4A");
         }
     }
 }
