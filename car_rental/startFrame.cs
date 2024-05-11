@@ -20,6 +20,11 @@ namespace car_rental
             FlipGuna2PictureBoxHorizontally(guna2PictureBox3);
         }
 
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void startFrame_Load(object sender, EventArgs e)
         {
             string hexColor = "#FFFAE2";
