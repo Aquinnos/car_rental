@@ -158,6 +158,5 @@ namespace car_rental
                 pictureBox.Image = bmp;
             }
         }
-
     }
 }
