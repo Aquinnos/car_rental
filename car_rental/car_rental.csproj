@@ -71,7 +71,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Add_users.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,7 +83,6 @@
     <Compile Include="Admin_panel.Designer.cs">
       <DependentUpon>Admin_panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="database.cs" />
     <Compile Include="Del_users.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,23 +114,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="main_frame.resx">
       <DependentUpon>main_frame.cs</DependentUpon>
-=======
-    <Compile Include="database.cs" />
-    <Compile Include="Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
+    </EmbeddedResource>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Main.pl-PL.resx">
-      <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
->>>>>>> 913a8ca5d9190756ff7cf5146db2937926b5fc06
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
