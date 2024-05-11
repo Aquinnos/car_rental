@@ -16,7 +16,7 @@ namespace car_rental
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new glowna());
+            Application.Run(new Form1());
         }
     }
 }
