@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.guna2Shapes1 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.imie = new Guna.UI2.WinForms.Guna2TextBox();
             this.nazwisko = new Guna.UI2.WinForms.Guna2TextBox();
             this.nazwa = new Guna.UI2.WinForms.Guna2TextBox();
@@ -41,6 +39,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -64,26 +64,6 @@
             this.guna2Shapes1.Text = "guna2Shapes1";
             this.guna2Shapes1.UseTransparentBackground = true;
             this.guna2Shapes1.Zoom = 80;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::car_rental.Properties.Resources.mits;
-            this.pictureBox2.Location = new System.Drawing.Point(563, 190);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(205, 133);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::car_rental.Properties.Resources.land_rov;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 205);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(237, 126);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // imie
             // 
@@ -251,7 +231,7 @@
             // 
             this.guna2Button1.AutoRoundedCorners = true;
             this.guna2Button1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.BorderRadius = 10;
+            this.guna2Button1.BorderRadius = 13;
             this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -259,13 +239,33 @@
             this.guna2Button1.FillColor = System.Drawing.SystemColors.Info;
             this.guna2Button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.guna2Button1.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button1.Location = new System.Drawing.Point(317, 327);
+            this.guna2Button1.Location = new System.Drawing.Point(302, 327);
             this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(154, 29);
+            this.guna2Button1.Size = new System.Drawing.Size(199, 29);
             this.guna2Button1.TabIndex = 16;
             this.guna2Button1.Text = "ZAREJESTRUJ";
             this.guna2Button1.UseTransparentBackground = true;
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::car_rental.Properties.Resources.mits;
+            this.pictureBox2.Location = new System.Drawing.Point(563, 190);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(205, 133);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::car_rental.Properties.Resources.land_rov;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 205);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(237, 126);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // register
             // 

@@ -71,6 +71,13 @@ namespace car_rental
             this.Hide();
             Registration.Show();
         }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            login Logowanie = new login();
+            this.Hide();
+            Logowanie.Show();
+        }
     }
 }
 
