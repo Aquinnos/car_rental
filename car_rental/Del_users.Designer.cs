@@ -335,7 +335,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Del_users";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Del_users";
+            this.Text = "Paneł usuwania użytkowników";
             this.Load += new System.EventHandler(this.Del_users_Load);
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
             this.panel3.ResumeLayout(false);

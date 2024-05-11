@@ -378,7 +378,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Add_users";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add_users";
+            this.Text = "Panel dodawania użytkowników";
             this.Load += new System.EventHandler(this.Add_users_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

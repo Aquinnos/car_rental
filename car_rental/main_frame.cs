@@ -19,7 +19,6 @@ namespace car_rental
         {
             InitializeComponent();
             FlipPictureBoxHorizontally(pictureBox3);
-            this.guna2Button6.Click += new EventHandler(Button7_Click_7);
             ButtonsColor();
         }
         public void FlipPictureBoxHorizontally(PictureBox pictureBox)
