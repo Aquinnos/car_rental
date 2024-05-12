@@ -17,6 +17,7 @@ namespace car_rental
         public wyporzyczanie()
         {
             InitializeComponent();
+            refresh();
             FlipPictureBoxHorizontally(guna2PictureBox2);
             Main_frame_Load(panel1);
             Main_frame_Load(panel2);
@@ -67,20 +68,94 @@ namespace car_rental
 
         private void rezerwuj_Click(object sender, EventArgs e)
         {
+            string userID = ""; // to dać metodę zdobycia ID uzytkownika
+            string id = ID_AUTA.Text;
             string rejstracja = Nr_rejs.Text;
             string Model = Model_aut.Text;
             string Marka = Marka_auta.Text;
             string cena = Cena_auta.Text;
-            //DateTime data_start = dateTimePicker1
-        }
+            DateTime data_start = dateTimePicker1.Value;
+            DateTime data_end = dateTimePicker2.Value;
 
-        private void wyporzyczanie_Load(object sender, EventArgs e)
+            // zmiana wartości dostępności w cars 
+
+            if (rejstracja=="" || Model=="" || Marka=="" || cena=="" || id=="" || data_end<=data_start)
+            {
+                MessageBox.Show("Błędne dane");
+                return;
+            }
+            StringBuilder queryBuilder = new StringBuilder("UPDATE Cars set IsAvailable = 0 where Id = @id;"); // Zamienć select na update by zmienić wart
+
+            string connectionString = "Data Source=database.sqlite;Version=3;";
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
+                {
+                    // Dodaj parametry jeśli istnieją
+                    if (!string.IsNullOrWhiteSpace(id))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                    }
+                    
+                    DataTable dataTable = new DataTable();
+                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+
+                    // Ustaw wyniki jako źródło danych dla DataGridView
+                    //guna2DataGridView1.DataSource = dataTable;
+                    
+                }
+
+                connection.Close();
+            }
+            refresh();
+
+            queryBuilder = new StringBuilder("INSERT INTO Rentals(UserId, CarId, StartDate, EndDate) values('@userID', '@id', '@data_start', '@data_end');"); // Zamienć select na update by zmienić wart
+
+            connectionString = "Data Source=database.sqlite;Version=3;";
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
+                {
+                    // Dodaj parametry jeśli istnieją
+                    if (!string.IsNullOrWhiteSpace(userID))
+                    {
+                        command.Parameters.AddWithValue("@userID", userID);
+                    }
+                    if (!string.IsNullOrWhiteSpace(id))
+                    {
+                        command.Parameters.AddWithValue("@id", $"%{id}%");
+                    }
+                        command.Parameters.AddWithValue("@data_start", $"%{data_start}%");
+                        command.Parameters.AddWithValue("@data_end", data_end);
+                    
+
+                    DataTable dataTable = new DataTable();
+                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+
+                    // Ustaw wyniki jako źródło danych dla DataGridView
+                    //guna2DataGridView1.DataSource = dataTable;
+                }
+
+                connection.Close();
+            }
+        }
+        private void refresh()
         {
             // Odbierz wartości z TextBoxów
-            string rejstracja = Nr_rejs.Text;
-            string Model = Model_aut.Text;
-            string Marka = Marka_auta.Text;
-            string cena = Cena_auta.Text;
+            string rejstracja = "";
+            string Model = "";
+            string Marka = "";
+            string cena = "";
 
             // Buduj zapytanie SQL z wykorzystaniem filtrów
             StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Cars WHERE 1=1"); // Zamienć select na update by zmienić wart
