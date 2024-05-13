@@ -10,70 +10,43 @@ using System.Windows.Forms;
 
 namespace car_rental
 {
-    public partial class glowna : Form
+    public partial class Form1 : Form
     {
-        private DatabaseManager dbManager;
-
-        public glowna()
+        public Form1()
         {
             InitializeComponent();
-            dbManager = new DatabaseManager();
-            Panel_oferty.Visible = false;
-            panel_login.Visible = false;
-            panel_rejstracja.Visible = false;
-            panel_profil.Visible = false;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (dbManager.ConnectToDatabase())
-            {
-                // Połączenie zostało nawiązane
-            }
-            else
-            {
-                // Połączenie nie zostało nawiązane
-            }
+            samochody form = new samochody();
+            form.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            form.Show();
         }
 
-
-        private void Login_rejstracja_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            panel_login.Visible = true;
-            panel_glowny.Visible = false;
-
+            wyporzyczanie form = new wyporzyczanie();
+            form.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            form.Show();
         }
 
-        private void oferty_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            Panel_oferty.Visible = true;
-            panel_glowny.Visible = false;
+            Zwrot form = new Zwrot();
+            form.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            form.Show();
         }
 
-        private void profil_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            panel_profil.Visible = true;
-            panel_glowny.Visible = false;
-        }
-
-        private void powrot_Click(object sender, EventArgs e)
-        {
-            panel_glowny.Visible = true;
-            Panel_oferty.Visible = false;
-            panel_login.Visible = false;
-            panel_profil.Visible = false;
-        }
-
-        private void powrot_do_login_Click(object sender, EventArgs e)
-        {
-            panel_login.Visible = true;
-            panel_rejstracja.Visible = false;
-        }
-
-        private void przejscie_do_rejstracji_Click(object sender, EventArgs e)
-        {
-            panel_login.Visible = false;
-            panel_rejstracja.Visible = true;
+            Klient form = new Klient();
+            form.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            form.Show();
         }
     }
 }
