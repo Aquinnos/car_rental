@@ -36,8 +36,7 @@ namespace car_rental
 
         public void ButtonsColor()
         {
-            // Definiuj kolor, który chcesz użyć
-            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); // Przykładowy kolor szesnastkowy
+            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); 
 
             // Przechodź przez wszystkie kontrolki na formularzu
             foreach (Control control in this.Controls)
@@ -46,11 +45,7 @@ namespace car_rental
                 if (control is Guna2Button)
                 {
                     Guna2Button button = (Guna2Button)control;
-
-                    // Ustaw kolor tła przycisku
                     button.FillColor = buttonsColor;
-
-                    // Opcjonalnie: Ustaw kolor czcionki, jeśli potrzebujesz
                     button.ForeColor = Color.White;
                 }
             }
