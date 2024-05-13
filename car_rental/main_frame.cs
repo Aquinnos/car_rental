@@ -71,5 +71,42 @@ namespace car_rental
                 }
             }
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            Cars cars = new Cars();
+            cars.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            cars.Show();
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            Client client = new Client();
+            client.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            client.Show();
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            Rentals rentals = new Rentals();
+            rentals.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            rentals.Show();
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            Return _return = new Return();
+            _return.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            _return.Show();
+        }
+
+        private void guna2Button8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
