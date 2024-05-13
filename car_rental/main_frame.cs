@@ -104,7 +104,7 @@ namespace car_rental
             _return.Show();
         }
 
-        private void guna2Button8_Click(object sender, EventArgs e)
+        private void main_frame_Load_1(object sender, EventArgs e)
         {
 
         }

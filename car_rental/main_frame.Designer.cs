@@ -90,7 +90,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(152, 31);
+            this.label1.Location = new System.Drawing.Point(152, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(484, 31);
             this.label1.TabIndex = 4;
@@ -220,7 +220,6 @@
             this.guna2Button8.Size = new System.Drawing.Size(157, 33);
             this.guna2Button8.TabIndex = 19;
             this.guna2Button8.Text = "ZDJĘCIA";
-            this.guna2Button8.Click += new System.EventHandler(this.guna2Button8_Click);
             // 
             // main_frame
             // 
@@ -245,6 +244,7 @@
             this.Name = "main_frame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Strona główna";
+            this.Load += new System.EventHandler(this.main_frame_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

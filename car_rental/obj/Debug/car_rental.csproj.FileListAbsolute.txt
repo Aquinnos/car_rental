@@ -46,3 +46,6 @@ C:\Users\Aquinn\source\repos\car_rental\car_rental\obj\Debug\car_rental.Client.r
 C:\Users\Aquinn\source\repos\car_rental\car_rental\obj\Debug\car_rental.Cars.resources
 C:\Users\Aquinn\source\repos\car_rental\car_rental\obj\Debug\car_rental.Rentals.resources
 C:\Users\Aquinn\source\repos\car_rental\car_rental\obj\Debug\car_rental.Return.resources
+C:\Users\Aquinn\source\repos\car_rental\car_rental\obj\Debug\car_rental.login.resources
+C:\Users\Aquinn\source\repos\car_rental\car_rental\obj\Debug\car_rental.register.resources
+C:\Users\Aquinn\source\repos\car_rental\car_rental\obj\Debug\car_rental.startFrame.resources

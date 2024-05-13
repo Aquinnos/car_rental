@@ -1,5 +1,4 @@
-﻿using Guna.UI2.WinForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,15 +10,13 @@ using System.Windows.Forms;
 
 namespace car_rental
 {
-    public partial class Client : Form
+    public partial class login : Form
     {
-        public Client()
+        public login()
         {
             InitializeComponent();
-            FlipPictureBoxHorizontally(guna2PictureBox2);
-            Main_frame_Load(panel1);
+            FlipPictureBoxHorizontally(pictureBox1);
             ButtonsColor();
-
         }
         public void FlipPictureBoxHorizontally(PictureBox pictureBox)
         {
@@ -33,28 +30,6 @@ namespace car_rental
 
                 // Ustaw odwrócony obraz z powrotem na PictureBox
                 pictureBox.Image = bmp;
-            }
-        }
-        private void Main_frame_Load(Panel panel)
-        {
-            string hexColor = "#FFFAE2";
-            Color myColor = ColorTranslator.FromHtml(hexColor);
-            panel.BackColor = myColor;
-        }
-
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            main_frame main_Frame = new main_frame();
-            main_Frame.FormClosed += (s, args) => this.Close();
-            this.Hide();
-            main_Frame.Show();
-        }
-
-        private void zapisz_Click(object sender, EventArgs e)
-        {
-            if (imie.Text == "" || haslo.Text == "" || naz_uz.Text == "" || nazwisko.Text == "" || Pesel.Text == "" || wiek.Text == "" || nr_prawa_jaz.Text == "")
-            {
-                MessageBox.Show("występują braki w danych danych");
             }
         }
         public void ButtonsColor()
@@ -76,6 +51,13 @@ namespace car_rental
                     button.ForeColor = Color.White;
                 }
             }
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            startFrame startframe = new startFrame();
+            this.Close();
+            startframe.Show();
         }
     }
 }

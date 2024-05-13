@@ -95,6 +95,12 @@
     <Compile Include="Client.Designer.cs">
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
+    <Compile Include="login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login.designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
     <Compile Include="main_frame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,18 @@
     </Compile>
     <Compile Include="Cars.Designer.cs">
       <DependentUpon>Cars.cs</DependentUpon>
+    </Compile>
+    <Compile Include="register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="register.designer.cs">
+      <DependentUpon>register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="startFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="startFrame.Designer.cs">
+      <DependentUpon>startFrame.cs</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
       <SubType>Form</SubType>
@@ -139,6 +157,9 @@
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="login.resx">
+      <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="main_frame.resx">
       <DependentUpon>main_frame.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +176,12 @@
     <EmbeddedResource Include="Cars.resx">
       <DependentUpon>Cars.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="register.resx">
+      <DependentUpon>register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="startFrame.resx">
+      <DependentUpon>startFrame.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,7 +191,6 @@
     <EmbeddedResource Include="Return.resx">
       <DependentUpon>Return.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="database.sqlite" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
