@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace car_rental
 {
@@ -50,17 +52,10 @@ namespace car_rental
             main_Frame.Show();
         }
 
-        private void zapisz_Click(object sender, EventArgs e)
-        {
-            if (imie.Text == "" || haslo.Text == "" || naz_uz.Text == "" || nazwisko.Text == "" || Pesel.Text == "" || wiek.Text == "" || nr_prawa_jaz.Text == "")
-            {
-                MessageBox.Show("występują braki w danych danych");
-            }
-        }
         public void ButtonsColor()
         {
             // Definiuj kolor, który chcesz użyć
-            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); // Przykładowy kolor szesnastkowy
+            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); 
 
             // Przechodź przez wszystkie kontrolki na formularzu
             foreach (Control control in this.Controls)
@@ -68,13 +63,115 @@ namespace car_rental
                 // Sprawdź, czy kontrolka jest przyciskiem Guna.UI2
                 if (control is Guna.UI2.WinForms.Guna2Button button)
                 {
-
                     // Ustaw kolor tła przycisku
                     button.FillColor = buttonsColor;
 
-                    // Opcjonalnie: Ustaw kolor czcionki, jeśli potrzebujesz
+                    // Ustaw kolor czcionki
                     button.ForeColor = Color.White;
                 }
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            int age;
+            // Walidacja PESEL tylko jeśli pole nie jest puste
+            if (!string.IsNullOrWhiteSpace(Pesel.Text) && Pesel.Text.Length != 11)
+            {
+                MessageBox.Show("PESEL musi zawierać dokładnie 11 znaków.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(naz_uz.Text))
+            {
+                MessageBox.Show("Nazwa użytkownika nie może być pusta.");
+                return;
+            }
+            // Walidacja wieku
+            if (!int.TryParse(wiek.Text, out age))
+            {
+                MessageBox.Show("Wprowadzony wiek jest nieprawidłowy. Proszę wprowadzić liczbę.");
+                age = SessionManager.CurrentUser.Age; // Ustawia wiek na obecny, jeśli wprowadzona wartość jest nieprawidłowa
+            }
+
+            if (!string.IsNullOrWhiteSpace(wiek.Text) && age < 18)
+            {
+                MessageBox.Show("Użytkownik musi być pełnoletni (18 lat lub więcej).");
+                return;
+            }
+
+            User updatedUser = new User
+            {
+                Id = SessionManager.CurrentUser.Id,
+                Username = naz_uz.Text,
+                FirstName = imie.Text,
+                LastName = nazwisko.Text,
+                Pesel = string.IsNullOrWhiteSpace(Pesel.Text) ? SessionManager.CurrentUser.Pesel : Pesel.Text,
+                Age = age,
+                DrivingLicense = nr_prawa_jaz.Text
+            };
+
+            UpdateUserInDatabase(updatedUser);
+        }
+
+        private static string connectionString = "Data Source=database.sqlite;Version=3;";
+
+        private void UpdateUserInDatabase(User user)
+        {
+            List<string> setClauses = new List<string>();
+
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                if (!string.IsNullOrWhiteSpace(user.Username))
+                    setClauses.Add("Username = @Username");
+                if (!string.IsNullOrWhiteSpace(user.Password))
+                    setClauses.Add("Password = @Password");
+                if (!string.IsNullOrWhiteSpace(user.FirstName))
+                    setClauses.Add("FirstName = @FirstName");
+                if (!string.IsNullOrWhiteSpace(user.LastName))
+                    setClauses.Add("LastName = @LastName");
+                if (!string.IsNullOrWhiteSpace(user.Pesel))
+                    setClauses.Add("Pesel = @Pesel");
+                if (!string.IsNullOrWhiteSpace(user.DrivingLicense))
+                    setClauses.Add("DrivingLicense = @DrivingLicense");
+                if (user.Age > 0)
+                    setClauses.Add("Age = @Age");
+
+                if (setClauses.Count == 0)
+                {
+                    MessageBox.Show("Brak danych do aktualizacji.");
+                    return;
+                }
+
+                string query = $"UPDATE Users SET {string.Join(", ", setClauses)} WHERE Id = @Id;";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    if (setClauses.Contains("Username = @Username"))
+                        command.Parameters.AddWithValue("@Username", user.Username);
+                    if (setClauses.Contains("Password = @Password"))
+                        command.Parameters.AddWithValue("@Password", user.Password);
+                    if (setClauses.Contains("FirstName = @FirstName"))
+                        command.Parameters.AddWithValue("@FirstName", user.FirstName);
+                    if (setClauses.Contains("LastName = @LastName"))
+                        command.Parameters.AddWithValue("@LastName", user.LastName);
+                    if (setClauses.Contains("Pesel = @Pesel"))
+                        command.Parameters.AddWithValue("@Pesel", user.Pesel);
+                    if (setClauses.Contains("Age = @Age"))
+                        command.Parameters.AddWithValue("@Age", user.Age);
+                    if (setClauses.Contains("DrivingLicense = @DrivingLicense"))
+                        command.Parameters.AddWithValue("@DrivingLicense", user.DrivingLicense);
+                    command.Parameters.AddWithValue("@Id", user.Id);
+
+                    int result = command.ExecuteNonQuery();
+                    if (result > 0)
+                        MessageBox.Show("Dane użytkownika zostały zaktualizowane.");
+                    else
+                        MessageBox.Show("Aktualizacja danych nie powiodła się.");
+                }
+
+                connection.Close();
             }
         }
     }

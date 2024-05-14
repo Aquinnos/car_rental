@@ -218,7 +218,7 @@
             this.guna2Button2.TabIndex = 1;
             this.guna2Button2.Text = "Zapisz";
             this.guna2Button2.UseTransparentBackground = true;
-            this.guna2Button2.Click += new System.EventHandler(this.zapisz_Click);
+            this.guna2Button2.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // wiek
             // 
