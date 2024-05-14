@@ -112,7 +112,7 @@
             this.guna2Button2.Name = "guna2Button2";
             this.guna2Button2.Size = new System.Drawing.Size(125, 29);
             this.guna2Button2.TabIndex = 37;
-            this.guna2Button2.Text = "WYJDŹ";
+            this.guna2Button2.Text = "Wyjdź";
             this.guna2Button2.UseTransparentBackground = true;
             this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
@@ -123,7 +123,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(308, 33);
             this.label5.TabIndex = 36;
-            this.label5.Text = "Logowanie";
+            this.label5.Text = "LOGOWANIE";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // guna2Button1
@@ -143,8 +143,9 @@
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(125, 29);
             this.guna2Button1.TabIndex = 35;
-            this.guna2Button1.Text = "ZAREJESTRUJ";
+            this.guna2Button1.Text = "Zaloguj";
             this.guna2Button1.UseTransparentBackground = true;
+            this.guna2Button1.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // label4
             // 
@@ -176,12 +177,13 @@
             this.haslo.Location = new System.Drawing.Point(254, 252);
             this.haslo.Margin = new System.Windows.Forms.Padding(5);
             this.haslo.Name = "haslo";
-            this.haslo.PasswordChar = '\0';
+            this.haslo.PasswordChar = '●';
             this.haslo.PlaceholderForeColor = System.Drawing.Color.Sienna;
             this.haslo.PlaceholderText = "";
             this.haslo.SelectedText = "";
             this.haslo.Size = new System.Drawing.Size(277, 23);
             this.haslo.TabIndex = 30;
+            this.haslo.UseSystemPasswordChar = true;
             // 
             // nazwa
             // 

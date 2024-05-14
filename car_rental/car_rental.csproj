@@ -121,6 +121,7 @@
     <Compile Include="register.designer.cs">
       <DependentUpon>register.cs</DependentUpon>
     </Compile>
+    <Compile Include="SessionManager.cs" />
     <Compile Include="startFrame.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -147,12 +147,13 @@
             this.haslo.Location = new System.Drawing.Point(255, 283);
             this.haslo.Margin = new System.Windows.Forms.Padding(5);
             this.haslo.Name = "haslo";
-            this.haslo.PasswordChar = '\0';
+            this.haslo.PasswordChar = '●';
             this.haslo.PlaceholderForeColor = System.Drawing.Color.Sienna;
             this.haslo.PlaceholderText = "";
             this.haslo.SelectedText = "";
             this.haslo.Size = new System.Drawing.Size(277, 23);
             this.haslo.TabIndex = 10;
+            this.haslo.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -221,6 +222,7 @@
             this.guna2Button1.TabIndex = 16;
             this.guna2Button1.Text = "ZAREJESTRUJ";
             this.guna2Button1.UseTransparentBackground = true;
+            this.guna2Button1.Click += new System.EventHandler(this.buttonRegister_Click);
             // 
             // pictureBox2
             // 

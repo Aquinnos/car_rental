@@ -89,7 +89,7 @@ namespace car_rental
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(637, 41);
             this.label1.TabIndex = 2;
-            this.label1.Text = "WYPOŻYCALNIA SAMOCHODÓW";
+            this.label1.Text = "WYPOŻYCZALNIA SAMOCHODÓW";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -228,7 +228,7 @@ namespace car_rental
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "startFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "startFrame";
+            this.Text = "Wypożyczalnia samochodów";
             this.Load += new System.EventHandler(this.startFrame_Load);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
