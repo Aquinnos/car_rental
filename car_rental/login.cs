@@ -84,7 +84,7 @@ namespace car_rental
                         {
                             if (reader.Read())
                             {
-                                return new User
+                                var user = new User
                                 {
                                     Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                     Username = username,
@@ -92,8 +92,9 @@ namespace car_rental
                                     LastName = reader.GetString(reader.GetOrdinal("LastName")),
                                     Pesel = reader.IsDBNull(reader.GetOrdinal("Pesel")) ? null : reader.GetString(reader.GetOrdinal("Pesel")),
                                     Age = reader.IsDBNull(reader.GetOrdinal("Age")) ? 0 : reader.GetInt32(reader.GetOrdinal("Age")),
-                                    isAdmin = reader.IsDBNull(reader.GetOrdinal("isAdmin")) ? "Nie" : reader.GetString(reader.GetOrdinal("isAdmin"))
+                                    isAdmin = reader.GetString(reader.GetOrdinal("isAdmin"))
                                 };
+                                return user;
                             }
                         }
                     }
@@ -128,7 +129,8 @@ namespace car_rental
             if (user != null)
             {
                 SessionManager.CurrentUser = user;
-                MessageBox.Show("Logowanie pomyślne!");
+                Console.WriteLine("Sesja zalogowana: " + SessionManager.CurrentUser.isAdmin);
+                MessageBox.Show("Zalogowano pomyślnie jako: " + user.Username);
                 main_frame main_Frame = new main_frame();
                 this.Close();
                 main_Frame.Show();
@@ -137,6 +139,11 @@ namespace car_rental
             {
                 MessageBox.Show("Błąd logowania. Sprawdź nazwę użytkownika i hasło.");
             }
+        }
+
+        private void login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

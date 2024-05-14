@@ -23,7 +23,7 @@ namespace car_rental
             Main_frame_Load(panel2);
             ButtonsColor(guna2Button1);
             ButtonsColor(guna2Button2);
-            heder_color();
+            header_color();
         }
         public void FlipPictureBoxHorizontally(PictureBox pictureBox)
         {
@@ -39,7 +39,7 @@ namespace car_rental
                 pictureBox.Image = bmp;
             }
         }
-        private void heder_color()
+        private void header_color()
         {
             string hexColor = "#714A4A";
             Color buttonsColor = ColorTranslator.FromHtml(hexColor);

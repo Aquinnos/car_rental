@@ -78,7 +78,7 @@ namespace car_rental
             string lastName = txtBoxLastName.Text;
             string pesel = txtBoxPesel.Text;
             string age = txtBoxAge.Text;
-            string isAdmin = txtBoxAdmin.Text;
+            string isAdmin = comboBox1.Text;
 
             txtBoxPass.PasswordChar = '*';
 
@@ -173,7 +173,7 @@ namespace car_rental
             string lastName = txtBoxLastName.Text;
             string pesel = txtBoxPesel.Text;
             string age = txtBoxAge.Text;
-            string isAdmin = txtBoxAdmin.Text;
+            string isAdmin = comboBox1.Text;
 
             // Sprawdź, czy wszystkie pola są puste
             if (string.IsNullOrWhiteSpace(username) &&

@@ -37,7 +37,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtBoxPass = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtBoxAdmin = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtBoxAge = new System.Windows.Forms.TextBox();
             this.txtBoxPesel = new System.Windows.Forms.TextBox();
@@ -57,6 +56,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -86,9 +86,9 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.comboBox1);
             this.panel3.Controls.Add(this.txtBoxPass);
             this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.txtBoxAdmin);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.txtBoxAge);
             this.panel3.Controls.Add(this.txtBoxPesel);
@@ -123,13 +123,6 @@
             this.label10.Size = new System.Drawing.Size(46, 16);
             this.label10.TabIndex = 15;
             this.label10.Text = "Hasło";
-            // 
-            // txtBoxAdmin
-            // 
-            this.txtBoxAdmin.Location = new System.Drawing.Point(134, 214);
-            this.txtBoxAdmin.Name = "txtBoxAdmin";
-            this.txtBoxAdmin.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxAdmin.TabIndex = 14;
             // 
             // label8
             // 
@@ -361,6 +354,20 @@
             this.panel2.Size = new System.Drawing.Size(2, 395);
             this.panel2.TabIndex = 26;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.White;
+            this.comboBox1.ForeColor = System.Drawing.Color.Black;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Tak",
+            "Nie"});
+            this.comboBox1.Location = new System.Drawing.Point(134, 214);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(101, 21);
+            this.comboBox1.TabIndex = 19;
+            // 
             // Add_users
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -414,8 +421,8 @@
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
         private System.Windows.Forms.TextBox txtBoxPass;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtBoxAdmin;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

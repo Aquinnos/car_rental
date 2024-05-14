@@ -19,7 +19,7 @@ namespace car_rental
         public string LastName { get; set; }
         public string Pesel { get; set; }
         public int Age { get; set; }
-        public string isAdmin { get; set; }
-        // Możesz dodać więcej właściwości zależnie od potrzeb
+        public string isAdmin { get; set; } 
+        public bool IsAdmin => this.isAdmin == "Tak";
     }
 }

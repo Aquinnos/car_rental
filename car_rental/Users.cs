@@ -38,7 +38,7 @@ namespace car_rental
             string lastName = txtBoxLastName.Text;
             string pesel = txtBoxPesel.Text;
             string age = txtBoxAge.Text;
-            string agree = txtBoxAgree.Text;
+            string isAdmin = comboBox1.Text;
 
             // Buduj zapytanie SQL z wykorzystaniem filtrów
             StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Users WHERE 1=1");
@@ -62,9 +62,9 @@ namespace car_rental
             {
                 queryBuilder.Append(" AND Age = @Age");
             }
-            if(!string.IsNullOrWhiteSpace(agree))
+            if(!string.IsNullOrWhiteSpace(isAdmin))
             {
-                queryBuilder.Append(" AND Agree = @Agree");
+                queryBuilder.Append(" AND isAdmin = @isAdmin");
             }
 
             string connectionString = "Data Source=database.sqlite;Version=3;";
@@ -95,9 +95,9 @@ namespace car_rental
                     {
                         command.Parameters.AddWithValue("@Age", age);
                     }
-                    if (!string.IsNullOrWhiteSpace(agree))
+                    if (!string.IsNullOrWhiteSpace(isAdmin))
                     {
-                        command.Parameters.AddWithValue("@Agree", agree);
+                        command.Parameters.AddWithValue("@isAdmin", isAdmin);
                     }
 
                     DataTable dataTable = new DataTable();
@@ -157,6 +157,11 @@ namespace car_rental
                 // Ustaw odwrócony obraz z powrotem na PictureBox
                 pictureBox.Image = bmp;
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

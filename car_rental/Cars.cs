@@ -22,7 +22,7 @@ namespace car_rental
             ButtonsColor(guna2Button2);
             Main_frame_Load(panel1);
             Main_frame_Load(panel2);
-            heder_color();
+            header_color();
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace car_rental
             button.BackColor = buttonsColor;
         }
 
-        private void heder_color()
+        private void header_color()
         {
             string hexColor = "#714A4A";
             Color buttonsColor = ColorTranslator.FromHtml(hexColor);
@@ -79,140 +79,87 @@ namespace car_rental
             string cena = Cena_auta.Text;
             string dostempnosc = comboBox1.Text;
 
-            // Buduj zapytanie SQL z wykorzystaniem filtrów
-            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Cars WHERE 1=1");
-            if (!string.IsNullOrWhiteSpace(rejstracja))
             {
-                queryBuilder.Append(" AND RegistrationNumber = @rejstracja");
-            }
-            if (!string.IsNullOrWhiteSpace(Model))
-            {
-                queryBuilder.Append(" AND Model LIKE @Model");
-            }
-            if (!string.IsNullOrWhiteSpace(Marka))
-            {
-                queryBuilder.Append(" AND Brand LIKE @Marka");
-            }
-            if (!string.IsNullOrWhiteSpace(dostempnosc))
-            {
-                queryBuilder.Append(" AND IsAvailable = @dostempnosc");
-            }
-            if (!string.IsNullOrWhiteSpace(cena))
-            {
-                queryBuilder.Append(" AND Price = @cena");
-            }
-
-            string connectionString = "Data Source=database.sqlite;Version=3;";
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-
-                using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
+                // Buduj zapytanie SQL z wykorzystaniem filtrów
+                StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Cars WHERE 1=1");
+                if (!string.IsNullOrWhiteSpace(rejstracja))
                 {
-                    // Dodaj parametry jeśli istnieją
-                    if (!string.IsNullOrWhiteSpace(rejstracja))
-                    {
-                        command.Parameters.AddWithValue("@rejstracja", rejstracja);
-                    }
-                    if (!string.IsNullOrWhiteSpace(Model))
-                    {
-                        command.Parameters.AddWithValue("@Model", $"%{Model}%");
-                    }
-                    if (!string.IsNullOrWhiteSpace(Marka))
-                    {
-                        command.Parameters.AddWithValue("@Marka", $"%{Marka}%");
-                    }
-                    if (!string.IsNullOrWhiteSpace(dostempnosc))
-                    {
-                        command.Parameters.AddWithValue("@dostempnosc", dostempnosc);
-                    }
-                    if (!string.IsNullOrWhiteSpace(cena))
-                    {
-                        command.Parameters.AddWithValue("@cena", cena);
-                    }
-
-                    DataTable dataTable = new DataTable();
-                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
-                    guna2DataGridView1.DataSource = dataTable;
+                    queryBuilder.Append(" AND RegistrationNumber = @rejstracja");
                 }
-
-                connection.Close();
-            }
-            /*
-            if (Nr_rejs.Text == "" && Model_aut.Text == "" && Marka_auta.Text == "" && Cena_auta.Text == "")
-            {
-                MessageBox.Show("za mało informacji");
-            }
-            else
-            {
-                
-                try
-                { 
-                    
-                
-                }
-                catch(Exception Myexe) 
+                if (!string.IsNullOrWhiteSpace(Model))
                 {
-                    MessageBox.Show(Myexe.Message);
+                    queryBuilder.Append(" AND Model LIKE @Model");
                 }
-                
+                if (!string.IsNullOrWhiteSpace(Marka))
+                {
+                    queryBuilder.Append(" AND Brand LIKE @Marka");
+                }
+                if (!string.IsNullOrWhiteSpace(dostempnosc))
+                {
+                    queryBuilder.Append(" AND IsAvailable = @dostempnosc");
+                }
+                if (!string.IsNullOrWhiteSpace(cena))
+                {
+                    queryBuilder.Append(" AND Price = @cena");
+                }
+
                 string connectionString = "Data Source=database.sqlite;Version=3;";
-                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
 
-                    // Wartość, którą chcemy wyszukać
-                    string rejstracja = Nr_rejs.Text;
-                    string model = Model_aut.Text;
-                    string marka = Marka_auta.Text;
-                    string cena = Cena_auta.Text;
-                    string dostempnosc = comboBox1.Text;
-                    string sql = "SELECT * FROM Cars WHERE RegistrationNumber = @rejstracja AND Brand = @marka AND Model = @model AND IsAvailable = @dostempnosc";
-                    // string sql = "SELECT * FROM Cars JOIN Rentals ON Cars.CarId = Rentals.CarId WHERE RegistrationNumber = @rejstracja AND Brand = @marka AND Model = @model AND Price = @cena AND IsAvailable = @dostempnosc";
-                    using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                    using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
                     {
-                        command.Parameters.AddWithValue("@rejstracja", rejstracja);
-                        command.Parameters.AddWithValue("@marka", marka);
-                        //command.Parameters.AddWithValue("@cena", cena);
-                        command.Parameters.AddWithValue("@model", model);
-                        command.Parameters.AddWithValue("@dostempnosc", dostempnosc);
-
-                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        // Dodaj parametry jeśli istnieją
+                        if (!string.IsNullOrWhiteSpace(rejstracja))
                         {
-                            DataTable dataTable = new DataTable();
-                            using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
-                            {
-                                adapter.Fill(dataTable);
-                            }
-
-                            // Ustaw wyniki jako źródło danych dla DataGridView
-                            guna2DataGridView1.DataSource = dataTable;
+                            command.Parameters.AddWithValue("@rejstracja", rejstracja);
                         }
+                        if (!string.IsNullOrWhiteSpace(Model))
+                        {
+                            command.Parameters.AddWithValue("@Model", $"%{Model}%");
+                        }
+                        if (!string.IsNullOrWhiteSpace(Marka))
+                        {
+                            command.Parameters.AddWithValue("@Marka", $"%{Marka}%");
+                        }
+                        if (!string.IsNullOrWhiteSpace(dostempnosc))
+                        {
+                            command.Parameters.AddWithValue("@dostempnosc", dostempnosc);
+                        }
+                        if (!string.IsNullOrWhiteSpace(cena))
+                        {
+                            command.Parameters.AddWithValue("@cena", cena);
+                        }
+
+                        DataTable dataTable = new DataTable();
+                        using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+
+                        // Ustaw wyniki jako źródło danych dla DataGridView
+                        guna2DataGridView1.DataSource = dataTable;
                     }
+                    connection.Close();
                 }
             }
-        */
         }
 
         private void samochody_Load(object sender, EventArgs e)
         {
             // Odbierz wartości z TextBoxów
-            string rejstracja = Nr_rejs.Text;
+            string rejestracja = Nr_rejs.Text;
             string Model = Model_aut.Text;
             string Marka = Marka_auta.Text;
             string cena = Cena_auta.Text;
-            string dostempnosc = comboBox1.Text;
+            string dostepnosc = comboBox1.Text;
 
             // Buduj zapytanie SQL z wykorzystaniem filtrów
             StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Cars WHERE 1=1");
-            if (!string.IsNullOrWhiteSpace(rejstracja))
+            if (!string.IsNullOrWhiteSpace(rejestracja))
             {
-                queryBuilder.Append(" AND RegistrationNumber = @rejstracja");
+                queryBuilder.Append(" AND RegistrationNumber = @rejestracja");
             }
             if (!string.IsNullOrWhiteSpace(Model))
             {
@@ -222,9 +169,9 @@ namespace car_rental
             {
                 queryBuilder.Append(" AND Brand LIKE @Marka");
             }
-            if (!string.IsNullOrWhiteSpace(dostempnosc))
+            if (!string.IsNullOrWhiteSpace(dostepnosc))
             {
-                queryBuilder.Append(" AND IsAvailable = @dostempnosc");
+                queryBuilder.Append(" AND IsAvailable = @dostepnosc");
             }
             if (!string.IsNullOrWhiteSpace(cena))
             {
@@ -239,9 +186,9 @@ namespace car_rental
                 using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
                 {
                     // Dodaj parametry jeśli istnieją
-                    if (!string.IsNullOrWhiteSpace(rejstracja))
+                    if (!string.IsNullOrWhiteSpace(rejestracja))
                     {
-                        command.Parameters.AddWithValue("@rejstracja", rejstracja);
+                        command.Parameters.AddWithValue("@rejstracja", rejestracja);
                     }
                     if (!string.IsNullOrWhiteSpace(Model))
                     {
@@ -251,9 +198,9 @@ namespace car_rental
                     {
                         command.Parameters.AddWithValue("@Marka", $"%{Marka}%");
                     }
-                    if (!string.IsNullOrWhiteSpace(dostempnosc))
+                    if (!string.IsNullOrWhiteSpace(dostepnosc))
                     {
-                        command.Parameters.AddWithValue("@dostempnosc", dostempnosc);
+                        command.Parameters.AddWithValue("@dostepnosc", dostepnosc);
                     }
                     if (!string.IsNullOrWhiteSpace(cena))
                     {
@@ -272,6 +219,11 @@ namespace car_rental
 
                 connection.Close();
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

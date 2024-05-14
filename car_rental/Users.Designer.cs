@@ -40,7 +40,6 @@
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txtBoxAgree = new System.Windows.Forms.TextBox();
             this.txtBoxAge = new System.Windows.Forms.TextBox();
             this.txtBoxPesel = new System.Windows.Forms.TextBox();
             this.txtBoxLastName = new System.Windows.Forms.TextBox();
@@ -57,6 +56,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.label9 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
@@ -119,7 +119,7 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.txtBoxAgree);
+            this.panel3.Controls.Add(this.comboBox1);
             this.panel3.Controls.Add(this.txtBoxAge);
             this.panel3.Controls.Add(this.txtBoxPesel);
             this.panel3.Controls.Add(this.txtBoxLastName);
@@ -137,13 +137,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(260, 287);
             this.panel3.TabIndex = 14;
-            // 
-            // txtBoxAgree
-            // 
-            this.txtBoxAgree.Location = new System.Drawing.Point(134, 195);
-            this.txtBoxAgree.Name = "txtBoxAgree";
-            this.txtBoxAgree.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxAgree.TabIndex = 13;
             // 
             // txtBoxAge
             // 
@@ -221,9 +214,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.Location = new System.Drawing.Point(12, 195);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(104, 16);
+            this.label8.Size = new System.Drawing.Size(45, 16);
             this.label8.TabIndex = 5;
-            this.label8.Text = "Czy się zgadza?";
+            this.label8.Text = "Admin";
             // 
             // label7
             // 
@@ -347,6 +340,21 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Lista użytkowników";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.White;
+            this.comboBox1.ForeColor = System.Drawing.Color.Black;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Tak",
+            "Nie"});
+            this.comboBox1.Location = new System.Drawing.Point(134, 190);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(100, 21);
+            this.comboBox1.TabIndex = 19;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // Users
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -400,7 +408,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtBoxAgree;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

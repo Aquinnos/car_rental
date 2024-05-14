@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace car_rental
 {
@@ -38,10 +39,16 @@ namespace car_rental
 
         private void Button7_Click_7(object sender, EventArgs e)
         {
-            Admin_panel adminPanel = new Admin_panel();
-            adminPanel.FormClosed += (s, args) => this.Close();
-            this.Hide();
-            adminPanel.Show();
+            if (SessionManager.CurrentUser != null && SessionManager.CurrentUser.IsAdmin)
+            {
+                Admin_panel adminPanel = new Admin_panel();
+                this.Hide();
+                adminPanel.Show();
+            }
+            else
+            {
+                MessageBox.Show("Brak uprawnień. Tylko administratorzy mogą wejść na ten panel.");
+            }
         }
 
         private void Main_frame_Load(object sender, EventArgs e)
@@ -107,6 +114,14 @@ namespace car_rental
         private void main_frame_Load_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void guna2Button7_Click(object sender, EventArgs e)
+        {
+            SessionManager.CurrentUser = null;
+            startFrame startframe = new startFrame();
+            this.Close();
+            startframe.Show();
         }
     }
 }
