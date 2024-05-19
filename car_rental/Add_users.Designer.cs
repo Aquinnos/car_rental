@@ -35,6 +35,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.txtBoxPass = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -86,6 +86,7 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.guna2Button1);
             this.panel3.Controls.Add(this.comboBox1);
             this.panel3.Controls.Add(this.txtBoxPass);
             this.panel3.Controls.Add(this.label10);
@@ -96,7 +97,6 @@
             this.panel3.Controls.Add(this.txtBoxFirstName);
             this.panel3.Controls.Add(this.txtBoxName);
             this.panel3.Controls.Add(this.guna2Button2);
-            this.panel3.Controls.Add(this.guna2Button1);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label5);
@@ -106,6 +106,20 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(260, 287);
             this.panel3.TabIndex = 21;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.White;
+            this.comboBox1.ForeColor = System.Drawing.Color.Black;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Tak",
+            "Nie"});
+            this.comboBox1.Location = new System.Drawing.Point(134, 214);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(101, 21);
+            this.comboBox1.TabIndex = 19;
             // 
             // txtBoxPass
             // 
@@ -298,6 +312,7 @@
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.guna2DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None;
             this.guna2DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -353,20 +368,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(2, 395);
             this.panel2.TabIndex = 26;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.ForeColor = System.Drawing.Color.Black;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Tak",
-            "Nie"});
-            this.comboBox1.Location = new System.Drawing.Point(134, 214);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(101, 21);
-            this.comboBox1.TabIndex = 19;
             // 
             // Add_users
             // 

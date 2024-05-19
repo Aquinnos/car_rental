@@ -37,11 +37,8 @@ namespace car_rental
         public void ButtonsColor()
         {
             Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); 
-
-            // Przechodź przez wszystkie kontrolki na formularzu
             foreach (Control control in this.Controls)
             {
-                // Sprawdź, czy kontrolka jest przyciskiem Guna.UI2
                 if (control is Guna2Button)
                 {
                     Guna2Button button = (Guna2Button)control;
@@ -55,13 +52,10 @@ namespace car_rental
         {
             if (pictureBox.Image != null)
             {
-                // Utwórz kopię obrazu z PictureBox
+                //kopia obrazu z PictureBox
                 Bitmap bmp = new Bitmap(pictureBox.Image);
-
-                // Odwróć obraz w poziomie
                 bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
-                // Ustaw odwrócony obraz z powrotem na PictureBox
+                // Ustawienie odwróconego obrazu z powrotem na PictureBox
                 pictureBox.Image = bmp;
             }
         }
@@ -82,8 +76,6 @@ namespace car_rental
 
             txtBoxPass.PasswordChar = '*';
 
-
-            // Buduj zapytanie SQL z wykorzystaniem filtrów
             StringBuilder queryBuilder = new StringBuilder("SELECT Id, Username, Password, FirstName, LastName, Pesel, Age, isAdmin FROM Users WHERE 1=1"); 
             if (!string.IsNullOrWhiteSpace(username))
             {
@@ -121,7 +113,6 @@ namespace car_rental
 
                 using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
                 {
-                    // Dodaj parametry jeśli istnieją
                     if (!string.IsNullOrWhiteSpace(username))
                     {
                         command.Parameters.AddWithValue("@Username", username);
@@ -156,8 +147,6 @@ namespace car_rental
                     {
                         adapter.Fill(dataTable);
                     }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
                     guna2DataGridView1.DataSource = dataTable;
                 }
 
@@ -175,7 +164,6 @@ namespace car_rental
             string age = txtBoxAge.Text;
             string isAdmin = comboBox1.Text;
 
-            // Sprawdź, czy wszystkie pola są puste
             if (string.IsNullOrWhiteSpace(username) &&
                 string.IsNullOrWhiteSpace(password) &&
                 string.IsNullOrWhiteSpace(firstName) &&
@@ -184,7 +172,7 @@ namespace car_rental
                 string.IsNullOrWhiteSpace(age))
             {
                 MessageBox.Show("Nie wpisano żadnego kryterium. Proszę wypełnić przynajmniej jedno pole.", "Brak danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Przerwij dalsze przetwarzanie
+                return;
             }
 
             if (txtBoxPesel.Text.Length != 11)
@@ -214,11 +202,10 @@ namespace car_rental
                     command.Parameters.AddWithValue("@LastName", lastName);
                     command.Parameters.AddWithValue("@Pesel", pesel);
                     command.Parameters.AddWithValue("@Age", age);
-                    command.Parameters.AddWithValue("@IsAdmin", isAdmin); // SQLite używa 1 i 0 dla wartości true i false
+                    command.Parameters.AddWithValue("@IsAdmin", isAdmin);
 
                     command.ExecuteNonQuery();
                 }
-
                 connection.Close();
             }
         }
@@ -246,8 +233,6 @@ namespace car_rental
                     {
                         adapter.Fill(dataTable);
                     }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
                     guna2DataGridView1.DataSource = dataTable;
                 }
 

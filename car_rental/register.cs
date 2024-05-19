@@ -34,20 +34,12 @@ namespace car_rental
 
         public void ButtonsColor()
         {
-            // Definiuj kolor, który chcesz użyć
-            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); // Przykładowy kolor szesnastkowy
-
-            // Przechodź przez wszystkie kontrolki na formularzu
+            Color buttonsColor = ColorTranslator.FromHtml("#714A4A");
             foreach (Control control in this.Controls)
             {
-                // Sprawdź, czy kontrolka jest przyciskiem Guna.UI2
-                if (control is Guna.UI2.WinForms.Guna2Button button)
+                if (control is Guna2Button button)
                 {
-
-                    // Ustaw kolor tła przycisku
                     button.FillColor = buttonsColor;
-
-                    // Opcjonalnie: Ustaw kolor czcionki, jeśli potrzebujesz
                     button.ForeColor = Color.White;
                 }
             }
@@ -64,13 +56,8 @@ namespace car_rental
         {
             if (pictureBox.Image != null)
             {
-                // Utwórz kopię obrazu z PictureBox
                 Bitmap bmp = new Bitmap(pictureBox.Image);
-
-                // Odwróć obraz w poziomie
                 bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
-                // Ustaw odwrócony obraz z powrotem na PictureBox
                 pictureBox.Image = bmp;
             }
         }
@@ -98,13 +85,12 @@ namespace car_rental
                     }
                 }
 
-                return true; // Rejestracja przebiegła pomyślnie
+                return true; 
             }
             catch (Exception ex)
             {
-                // Logowanie błędów, np. do pliku lub konsoli
                 Console.WriteLine("Error: " + ex.Message);
-                return false; // Rejestracja nieudana
+                return false; 
             }
         }
 

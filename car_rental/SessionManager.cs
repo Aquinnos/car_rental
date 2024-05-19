@@ -24,4 +24,14 @@ namespace car_rental
         public string isAdmin { get; set; } 
         public bool IsAdmin => this.isAdmin == "Tak";
     }
+
+    public class Car
+    {
+        public int CarId { get; set; }
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public double Price { get; set; }
+        public string RegistrationNumber { get; set; }
+        public string IsAvailable { get; set; }
+    }
 }

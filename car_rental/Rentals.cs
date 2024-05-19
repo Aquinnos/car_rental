@@ -1,9 +1,11 @@
 ﻿using Guna.UI2.WinForms;
+using Guna.UI2.WinForms.Suite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -65,90 +67,8 @@ namespace car_rental
             main_frame.Show();
         }
 
+        private string connectionString = "Data Source=database.sqlite;Version=3;";
 
-        private void rezerwuj_Click(object sender, EventArgs e)
-        {
-            string userID = ""; // to dać metodę zdobycia ID uzytkownika
-            string id = ID_AUTA.Text;
-            string rejstracja = Nr_rejs.Text;
-            string Model = Model_aut.Text;
-            string Marka = Marka_auta.Text;
-            string cena = Cena_auta.Text;
-            DateTime data_start = dateTimePicker1.Value;
-            DateTime data_end = dateTimePicker2.Value;
-
-            // zmiana wartości dostępności w cars 
-
-            if (rejstracja=="" || Model=="" || Marka=="" || cena=="" || id=="" || data_end<=data_start)
-            {
-                MessageBox.Show("Błędne dane");
-                return;
-            }
-            StringBuilder queryBuilder = new StringBuilder("UPDATE Cars set IsAvailable = 0 where Id = @id;"); // Zamienć select na update by zmienić wart
-
-            string connectionString = "Data Source=database.sqlite;Version=3;";
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-
-                using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
-                {
-                    // Dodaj parametry jeśli istnieją
-                    if (!string.IsNullOrWhiteSpace(id))
-                    {
-                        command.Parameters.AddWithValue("@id", id);
-                    }
-                    
-                    DataTable dataTable = new DataTable();
-                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
-                    //guna2DataGridView1.DataSource = dataTable;
-                    
-                }
-
-                connection.Close();
-            }
-            refresh();
-
-            queryBuilder = new StringBuilder("INSERT INTO Rentals(UserId, CarId, StartDate, EndDate) values('@userID', '@id', '@data_start', '@data_end');"); // Zamienć select na update by zmienić wart
-
-            connectionString = "Data Source=database.sqlite;Version=3;";
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-
-                using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
-                {
-                    // Dodaj parametry jeśli istnieją
-                    if (!string.IsNullOrWhiteSpace(userID))
-                    {
-                        command.Parameters.AddWithValue("@userID", userID);
-                    }
-                    if (!string.IsNullOrWhiteSpace(id))
-                    {
-                        command.Parameters.AddWithValue("@id", $"%{id}%");
-                    }
-                        command.Parameters.AddWithValue("@data_start", $"%{data_start}%");
-                        command.Parameters.AddWithValue("@data_end", data_end);
-                    
-
-                    DataTable dataTable = new DataTable();
-                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
-                    //guna2DataGridView1.DataSource = dataTable;
-                }
-
-                connection.Close();
-            }
-        }
         private void refresh()
         {
             // Odbierz wartości z TextBoxów
@@ -176,7 +96,6 @@ namespace car_rental
                 queryBuilder.Append(" AND Price = @cena");
             }
 
-            string connectionString = "Data Source=database.sqlite;Version=3;";
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
@@ -206,8 +125,6 @@ namespace car_rental
                     {
                         adapter.Fill(dataTable);
                     }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
                     guna2DataGridView1.DataSource = dataTable;
                 }
 
@@ -215,9 +132,163 @@ namespace car_rental
             }
         }
 
-        private void wyporzyczanie_Load(object sender, EventArgs e)
-        {
 
+        private void btnRent_Click(object sender, EventArgs e)
+        {
+            if (SessionManager.CurrentUser == null)
+            {
+                MessageBox.Show("Musisz być zalogowany, aby wypożyczyć samochód.");
+                return;
+            }
+
+            var currentUser = SessionManager.CurrentUser;
+            Debug.WriteLine($"PESEL: {currentUser.Pesel}, Age: {currentUser.Age}, Driving License: {currentUser.DrivingLicense}");
+
+            if (string.IsNullOrWhiteSpace(currentUser.Pesel))
+            {
+                MessageBox.Show("Musisz podać PESEL przed wypożyczeniem samochodu.");
+                return;
+            }
+
+            if (currentUser.Age < 18)
+            {
+                MessageBox.Show("Musisz mieć co najmniej 18 lat przed wypożyczeniem samochodu.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(currentUser.DrivingLicense))
+            {
+                MessageBox.Show("Musisz podać numer prawa jazdy przed wypożyczeniem samochodu.");
+                return;
+            }
+
+            if (!ValidateInputs())
+            {
+                return;
+            }
+
+            Car car = GetCarByRegistrationNumber(Nr_rejs.Text);
+            if (car == null)
+            {
+                MessageBox.Show("Nie znaleziono samochodu o podanym numerze rejestracyjnym.");
+                return;
+            }
+
+            if (car.IsAvailable != "Tak")
+            {
+                MessageBox.Show("Samochód jest już wypożyczony.");
+                return;
+            }
+
+            DateTime startDate = dateTimePicker1.Value;
+            DateTime endDate = dateTimePicker2.Value;
+
+            RentCar(car, startDate, endDate);
+        }
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(Nr_rejs.Text))
+            {
+                MessageBox.Show("Numer rejestracyjny nie może być pusty.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Model_aut.Text))
+            {
+                MessageBox.Show("Model nie może być pusty.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Marka_auta.Text))
+            {
+                MessageBox.Show("Marka nie może być pusta.");
+                return false;
+            }
+
+            if (!decimal.TryParse(Cena_auta.Text, out decimal price) || price <= 0)
+            {
+                MessageBox.Show("Wprowadź poprawną cenę.");
+                return false;
+            }
+
+            if (dateTimePicker1.Value >= dateTimePicker2.Value)
+            {
+                MessageBox.Show("Data rozpoczęcia rezerwacji musi być wcześniejsza niż data końca rezerwacji.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private Car GetCarByRegistrationNumber(string registrationNumber)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Cars WHERE RegistrationNumber = @RegistrationNumber";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@RegistrationNumber", registrationNumber);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Car
+                            {
+                                CarId = Convert.ToInt32(reader["CarId"]),
+                                Brand = reader["Brand"].ToString(),
+                                Model = reader["Model"].ToString(),
+                                RegistrationNumber = reader["RegistrationNumber"].ToString(),
+                                IsAvailable = reader["IsAvailable"].ToString(),
+                                Price = Convert.ToDouble(reader["Price"])
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        private void RentCar(Car car, DateTime startDate, DateTime endDate)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        string updateCarQuery = "UPDATE Cars SET IsAvailable = 'Nie' WHERE CarId = @CarId";
+                        using (var updateCarCommand = new SQLiteCommand(updateCarQuery, connection))
+                        {
+                            updateCarCommand.Parameters.AddWithValue("@CarId", car.CarId);
+                            updateCarCommand.ExecuteNonQuery();
+                        }
+
+                        string insertRentalQuery = @"
+                    INSERT INTO Rentals (UserId, CarId, StartDate, EndDate)
+                    VALUES (@UserId, @CarId, @StartDate, @EndDate)";
+                        using (var insertRentalCommand = new SQLiteCommand(insertRentalQuery, connection))
+                        {
+                            insertRentalCommand.Parameters.AddWithValue("@UserId", SessionManager.CurrentUser.Id);
+                            insertRentalCommand.Parameters.AddWithValue("@CarId", car.CarId);
+                            insertRentalCommand.Parameters.AddWithValue("@StartDate", startDate);
+                            insertRentalCommand.Parameters.AddWithValue("@EndDate", endDate);
+                            insertRentalCommand.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                        MessageBox.Show("Samochód został pomyślnie wypożyczony.");
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Wystąpił błąd podczas wypożyczania samochodu: " + ex.Message);
+                    }
+                }
+                connection.Close();
+            }
         }
     }
 }

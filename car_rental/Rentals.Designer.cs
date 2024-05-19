@@ -88,8 +88,11 @@
             // 
             // guna2DataGridView1
             // 
+            this.guna2DataGridView1.AllowUserToAddRows = false;
+            this.guna2DataGridView1.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.guna2DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None;
             this.guna2DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
@@ -113,6 +116,7 @@
             this.guna2DataGridView1.Location = new System.Drawing.Point(388, 178);
             this.guna2DataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
+            this.guna2DataGridView1.ReadOnly = true;
             this.guna2DataGridView1.RowHeadersVisible = false;
             this.guna2DataGridView1.RowHeadersWidth = 51;
             this.guna2DataGridView1.RowTemplate.Height = 24;
@@ -131,7 +135,7 @@
             this.guna2DataGridView1.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 20;
-            this.guna2DataGridView1.ThemeStyle.ReadOnly = false;
+            this.guna2DataGridView1.ThemeStyle.ReadOnly = true;
             this.guna2DataGridView1.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.guna2DataGridView1.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.guna2DataGridView1.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -223,7 +227,7 @@
             this.guna2Button2.Size = new System.Drawing.Size(94, 24);
             this.guna2Button2.TabIndex = 1;
             this.guna2Button2.Text = "Rezerwuj";
-            this.guna2Button2.Click += new System.EventHandler(this.rezerwuj_Click);
+            this.guna2Button2.Click += new System.EventHandler(this.btnRent_Click);
             // 
             // guna2Button1
             // 
@@ -250,13 +254,12 @@
             this.label1.Location = new System.Drawing.Point(17, 16);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 25;
-            this.label1.Text = "ID";
+            this.label1.Text = "ID samochodu";
             // 
             // ID_AUTA
             // 
-            this.ID_AUTA.BorderRadius = 5;
             this.ID_AUTA.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ID_AUTA.DefaultText = "";
             this.ID_AUTA.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -320,9 +323,9 @@
             this.label5.Location = new System.Drawing.Point(17, 44);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 26);
+            this.label5.Size = new System.Drawing.Size(59, 26);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Numer \r\nRejstracyjny";
+            this.label5.Text = "Numer \r\nrejstracyjny";
             // 
             // label4
             // 
@@ -359,7 +362,6 @@
             // 
             // Nr_rejs
             // 
-            this.Nr_rejs.BorderRadius = 5;
             this.Nr_rejs.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Nr_rejs.DefaultText = "";
             this.Nr_rejs.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -380,7 +382,6 @@
             // 
             // Model_aut
             // 
-            this.Model_aut.BorderRadius = 5;
             this.Model_aut.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Model_aut.DefaultText = "";
             this.Model_aut.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -401,7 +402,6 @@
             // 
             // Marka_auta
             // 
-            this.Marka_auta.BorderRadius = 5;
             this.Marka_auta.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Marka_auta.DefaultText = "";
             this.Marka_auta.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -422,7 +422,6 @@
             // 
             // Cena_auta
             // 
-            this.Cena_auta.BorderRadius = 5;
             this.Cena_auta.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Cena_auta.DefaultText = "";
             this.Cena_auta.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -495,7 +494,6 @@
             this.Name = "Rentals";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Panel wypożyczeń";
-            this.Load += new System.EventHandler(this.wyporzyczanie_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);

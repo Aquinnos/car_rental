@@ -26,13 +26,8 @@ namespace car_rental
         {
             if (pictureBox.Image != null)
             {
-                // Utwórz kopię obrazu z PictureBox
                 Bitmap bmp = new Bitmap(pictureBox.Image);
-
-                // Odwróć obraz w poziomie
                 bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
-                // Ustaw odwrócony obraz z powrotem na PictureBox
                 pictureBox.Image = bmp;
             }
         }
@@ -60,20 +55,12 @@ namespace car_rental
 
         public void ButtonsColor()
         {
-            // Definiuj kolor, który chcesz użyć
-            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); // Przykładowy kolor szesnastkowy
-
-            // Przechodź przez wszystkie kontrolki na formularzu
+            Color buttonsColor = ColorTranslator.FromHtml("#714A4A");
             foreach (Control control in this.Controls)
             {
-                // Sprawdź, czy kontrolka jest przyciskiem Guna.UI2
                 if (control is Guna.UI2.WinForms.Guna2Button button)
                 {
-
-                    // Ustaw kolor tła przycisku
                     button.FillColor = buttonsColor;
-
-                    // Opcjonalnie: Ustaw kolor czcionki, jeśli potrzebujesz
                     button.ForeColor = Color.White;
                 }
             }
@@ -105,17 +92,16 @@ namespace car_rental
 
         private void guna2Button4_Click(object sender, EventArgs e)
         {
+            if (SessionManager.CurrentUser == null)
+            {
+                MessageBox.Show("Musisz być zalogowany, aby wypożyczyć samochód.");
+                return;
+            }
             Return _return = new Return();
             _return.FormClosed += (s, args) => this.Close();
             this.Hide();
             _return.Show();
         }
-
-        private void main_frame_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void guna2Button7_Click(object sender, EventArgs e)
         {
             SessionManager.CurrentUser = null;

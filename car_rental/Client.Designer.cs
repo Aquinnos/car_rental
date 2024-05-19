@@ -181,13 +181,11 @@
             // guna2Button1
             // 
             this.guna2Button1.Animated = true;
-            this.guna2Button1.BorderRadius = 5;
-            this.guna2Button1.BorderThickness = 1;
             this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.SystemColors.Info;
+            this.guna2Button1.FillColor = System.Drawing.Color.Transparent;
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button1.ForeColor = System.Drawing.Color.Black;
             this.guna2Button1.Location = new System.Drawing.Point(340, 216);
@@ -202,13 +200,11 @@
             // guna2Button2
             // 
             this.guna2Button2.Animated = true;
-            this.guna2Button2.BorderRadius = 5;
-            this.guna2Button2.BorderThickness = 1;
             this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.FillColor = System.Drawing.SystemColors.Info;
+            this.guna2Button2.FillColor = System.Drawing.Color.Transparent;
             this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button2.ForeColor = System.Drawing.Color.Black;
             this.guna2Button2.Location = new System.Drawing.Point(50, 216);
@@ -222,7 +218,6 @@
             // 
             // wiek
             // 
-            this.wiek.BorderRadius = 5;
             this.wiek.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.wiek.DefaultText = "";
             this.wiek.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -243,7 +238,6 @@
             // 
             // nazwisko
             // 
-            this.nazwisko.BorderRadius = 5;
             this.nazwisko.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.nazwisko.DefaultText = "";
             this.nazwisko.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -275,7 +269,6 @@
             // 
             // imie
             // 
-            this.imie.BorderRadius = 5;
             this.imie.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.imie.DefaultText = "";
             this.imie.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -307,7 +300,6 @@
             // 
             // naz_uz
             // 
-            this.naz_uz.BorderRadius = 5;
             this.naz_uz.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.naz_uz.DefaultText = "";
             this.naz_uz.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -350,7 +342,6 @@
             // 
             // Pesel
             // 
-            this.Pesel.BorderRadius = 5;
             this.Pesel.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Pesel.DefaultText = "";
             this.Pesel.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -382,7 +373,6 @@
             // 
             // nr_prawa_jaz
             // 
-            this.nr_prawa_jaz.BorderRadius = 5;
             this.nr_prawa_jaz.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.nr_prawa_jaz.DefaultText = "";
             this.nr_prawa_jaz.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -403,7 +393,6 @@
             // 
             // haslo
             // 
-            this.haslo.BorderRadius = 5;
             this.haslo.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.haslo.DefaultText = "";
             this.haslo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));

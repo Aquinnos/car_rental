@@ -99,8 +99,6 @@
             // 
             this.guna2Button2.Animated = true;
             this.guna2Button2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button2.BorderRadius = 5;
-            this.guna2Button2.BorderThickness = 1;
             this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -130,8 +128,6 @@
             // 
             this.guna2Button1.Animated = true;
             this.guna2Button1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.BorderRadius = 5;
-            this.guna2Button1.BorderThickness = 1;
             this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -163,7 +159,6 @@
             // 
             this.haslo.BackColor = System.Drawing.Color.Transparent;
             this.haslo.BorderColor = System.Drawing.Color.Transparent;
-            this.haslo.BorderRadius = 5;
             this.haslo.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.haslo.DefaultText = "";
             this.haslo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -189,7 +184,6 @@
             // 
             this.nazwa.BackColor = System.Drawing.Color.Transparent;
             this.nazwa.BorderColor = System.Drawing.Color.Transparent;
-            this.nazwa.BorderRadius = 5;
             this.nazwa.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.nazwa.DefaultText = "";
             this.nazwa.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));

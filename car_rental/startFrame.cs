@@ -38,7 +38,7 @@ namespace car_rental
 
             foreach (Control control in this.Controls)
             {
-                if (control is Guna.UI2.WinForms.Guna2Button button)
+                if (control is Guna2Button button)
                 {
                     button.FillColor = buttonsColor;
                     button.ForeColor = Color.White;

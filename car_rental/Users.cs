@@ -32,7 +32,6 @@ namespace car_rental
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            // Odbierz wartości z TextBoxów
             string id = txtBoxId.Text;
             string firstName = txtBoxFirstName.Text;
             string lastName = txtBoxLastName.Text;
@@ -40,7 +39,6 @@ namespace car_rental
             string age = txtBoxAge.Text;
             string isAdmin = comboBox1.Text;
 
-            // Buduj zapytanie SQL z wykorzystaniem filtrów
             StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Users WHERE 1=1");
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -74,7 +72,6 @@ namespace car_rental
 
                 using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
                 {
-                    // Dodaj parametry jeśli istnieją
                     if (!string.IsNullOrWhiteSpace(id))
                     {
                         command.Parameters.AddWithValue("@Id", id);
@@ -105,8 +102,6 @@ namespace car_rental
                     {
                         adapter.Fill(dataTable);
                     }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
                     guna2DataGridView1.DataSource = dataTable;
                 }
 
@@ -125,21 +120,14 @@ namespace car_rental
 
         public void ButtonsColor()
         {
-            // Definiuj kolor, który chcesz użyć
-            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); // Przykładowy kolor szesnastkowy
+            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); 
 
-            // Przechodź przez wszystkie kontrolki na formularzu
             foreach (Control control in this.Controls)
             {
-                // Sprawdź, czy kontrolka jest przyciskiem Guna.UI2
                 if (control is Guna2Button)
                 {
                     Guna2Button button = (Guna2Button)control;
-
-                    // Ustaw kolor tła przycisku
                     button.FillColor = buttonsColor;
-
-                    // Opcjonalnie: Ustaw kolor czcionki, jeśli potrzebujesz
                     button.ForeColor = Color.White;
                 }
             }
@@ -148,20 +136,10 @@ namespace car_rental
         {
             if (pictureBox.Image != null)
             {
-                // Utwórz kopię obrazu z PictureBox
                 Bitmap bmp = new Bitmap(pictureBox.Image);
-
-                // Odwróć obraz w poziomie
                 bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
-                // Ustaw odwrócony obraz z powrotem na PictureBox
                 pictureBox.Image = bmp;
             }
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

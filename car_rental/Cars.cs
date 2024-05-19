@@ -37,13 +37,8 @@ namespace car_rental
         {
             if (pictureBox.Image != null)
             {
-                // Utwórz kopię obrazu z PictureBox
                 Bitmap bmp = new Bitmap(pictureBox.Image);
-
-                // Odwróć obraz w poziomie
                 bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
-                // Ustaw odwrócony obraz z powrotem na PictureBox
                 pictureBox.Image = bmp;
             }
         }
@@ -70,9 +65,9 @@ namespace car_rental
             panel.BackColor = myColor;
         }
 
+        private string connectionString = "Data Source=database.sqlite;Version=3;";
         private void wyszukaj_Click(object sender, EventArgs e)
         {
-            // Odbierz wartości z TextBoxów
             string rejstracja = Nr_rejs.Text;
             string Model = Model_aut.Text;
             string Marka = Marka_auta.Text;
@@ -80,7 +75,6 @@ namespace car_rental
             string dostempnosc = comboBox1.Text;
 
             {
-                // Buduj zapytanie SQL z wykorzystaniem filtrów
                 StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Cars WHERE 1=1");
                 if (!string.IsNullOrWhiteSpace(rejstracja))
                 {
@@ -103,7 +97,6 @@ namespace car_rental
                     queryBuilder.Append(" AND Price = @cena");
                 }
 
-                string connectionString = "Data Source=database.sqlite;Version=3;";
                 using (var connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
@@ -137,8 +130,6 @@ namespace car_rental
                         {
                             adapter.Fill(dataTable);
                         }
-
-                        // Ustaw wyniki jako źródło danych dla DataGridView
                         guna2DataGridView1.DataSource = dataTable;
                     }
                     connection.Close();
@@ -148,14 +139,12 @@ namespace car_rental
 
         private void samochody_Load(object sender, EventArgs e)
         {
-            // Odbierz wartości z TextBoxów
             string rejestracja = Nr_rejs.Text;
             string Model = Model_aut.Text;
             string Marka = Marka_auta.Text;
             string cena = Cena_auta.Text;
             string dostepnosc = comboBox1.Text;
 
-            // Buduj zapytanie SQL z wykorzystaniem filtrów
             StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Cars WHERE 1=1");
             if (!string.IsNullOrWhiteSpace(rejestracja))
             {
@@ -178,14 +167,12 @@ namespace car_rental
                 queryBuilder.Append(" AND Price = @cena");
             }
 
-            string connectionString = "Data Source=database.sqlite;Version=3;";
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
                 using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
                 {
-                    // Dodaj parametry jeśli istnieją
                     if (!string.IsNullOrWhiteSpace(rejestracja))
                     {
                         command.Parameters.AddWithValue("@rejstracja", rejestracja);
@@ -212,18 +199,11 @@ namespace car_rental
                     {
                         adapter.Fill(dataTable);
                     }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
                     guna2DataGridView1.DataSource = dataTable;
                 }
 
                 connection.Close();
             }
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

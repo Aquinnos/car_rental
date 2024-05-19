@@ -19,7 +19,6 @@ namespace car_rental
         {
             InitializeComponent();
             FlipPictureBoxHorizontally(guna2PictureBox2);
-            refresh();
             Main_frame_Load(panel1);
             Main_frame_Load(panel2);
             ButtonsColor(guna2Button1);
@@ -38,6 +37,8 @@ namespace car_rental
             string hexColor = "#FFFAE2";
             Color myColor = ColorTranslator.FromHtml(hexColor);
             panel.BackColor = myColor;
+            LoadRentedCars();
+            LoadReturnedCars();
         }
         public void ButtonsColor(Guna2Button button)
         {
@@ -49,13 +50,8 @@ namespace car_rental
         {
             if (pictureBox.Image != null)
             {
-                // Utwórz kopię obrazu z PictureBox
                 Bitmap bmp = new Bitmap(pictureBox.Image);
-
-                // Odwróć obraz w poziomie
                 bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
-                // Ustaw odwrócony obraz z powrotem na PictureBox
                 pictureBox.Image = bmp;
             }
         }
@@ -67,193 +63,151 @@ namespace car_rental
             this.Hide();
             main_Frame.Show();
         }
-        private void refresh()
+
+        private string connectionString = "Data Source=database.sqlite;Version=3;";
+
+        private Car GetCarByRegistrationNumber(string registrationNumber)
         {
-            // Odbierz wartości z TextBoxów
-            string rejstracja = "";
-            string Model = "";
-            string Marka = "";
-            string cena = "";
-            
-            string userID = ""; // to dać metodę zdobycia ID uzytkownika
-            string id = "";
-            string data_start = "";
-            string data_end = "";
-
-            //tutaj dać zapytanie takie by spełniało figme
-
-            // Buduj zapytanie SQL z wykorzystaniem filtrów
-            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Rentals WHERE 1=1"); // Zamienć select na update by zmienić wart
-            if (!string.IsNullOrWhiteSpace(userID))
-            {
-                queryBuilder.Append(" AND UserID = @userID");
-            }
-            if (!string.IsNullOrWhiteSpace(id))
-            {
-                queryBuilder.Append(" AND CarId LIKE @id");
-            }
-            if (!string.IsNullOrWhiteSpace(data_start))
-            {
-                queryBuilder.Append(" AND StartDate LIKE @data_start");
-            }
-            if (!string.IsNullOrWhiteSpace(data_end))
-            {
-                queryBuilder.Append(" AND EndDate = @data_end");
-            }
-
-            string connectionString = "Data Source=database.sqlite;Version=3;";
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-
-                using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
+                string query = "SELECT * FROM Cars WHERE RegistrationNumber = @RegistrationNumber";
+                using (var command = new SQLiteCommand(query, connection))
                 {
-                    // Dodaj parametry jeśli istnieją
-                    if (!string.IsNullOrWhiteSpace(userID))
+                    command.Parameters.AddWithValue("@RegistrationNumber", registrationNumber);
+                    using (var reader = command.ExecuteReader())
                     {
-                        command.Parameters.AddWithValue("@userID", userID);
+                        if (reader.Read())
+                        {
+                            return new Car
+                            {
+                                CarId = Convert.ToInt32(reader["CarId"]),
+                                Brand = reader["Brand"].ToString(),
+                                Model = reader["Model"].ToString(),
+                                RegistrationNumber = reader["RegistrationNumber"].ToString(),
+                                Price = Convert.ToDouble(reader["Price"]),
+                                IsAvailable = reader["IsAvailable"].ToString()
+                            };
+                        }
                     }
-                    if (!string.IsNullOrWhiteSpace(id))
-                    {
-                        command.Parameters.AddWithValue("@id", $"%{id}%");
-                    }
-                    if (!string.IsNullOrWhiteSpace(data_start))
-                    {
-                        command.Parameters.AddWithValue("@data_start", $"%{data_start}%");
-                    }
-                    if (!string.IsNullOrWhiteSpace(data_end))
-                    {
-                        command.Parameters.AddWithValue("@data_end", data_end);
-                    }
-
-                    DataTable dataTable = new DataTable();
-                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
-                    guna2DataGridView1.DataSource = dataTable;
                 }
-
-                connection.Close();
             }
-
-            // jeszcze rz to samo ale ustawia 2 datagrid (historie)
-            //tutaj dać zapytanie takie by spełniało figme
-            queryBuilder = new StringBuilder("SELECT * FROM Rentals WHERE 1=1"); 
-            if (!string.IsNullOrWhiteSpace(userID))
-            {
-                queryBuilder.Append(" AND UserID = @userID");
-            }
-            if (!string.IsNullOrWhiteSpace(id))
-            {
-                queryBuilder.Append(" AND CarId LIKE @id");
-            }
-            if (!string.IsNullOrWhiteSpace(data_start))
-            {
-                queryBuilder.Append(" AND StartDate LIKE @data_start");
-            }
-            if (!string.IsNullOrWhiteSpace(data_end))
-            {
-                queryBuilder.Append(" AND EndDate = @data_end");
-            }
-
-            connectionString = "Data Source=database.sqlite;Version=3;";
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-
-                using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
-                {
-                    // Dodaj parametry jeśli istnieją
-                    if (!string.IsNullOrWhiteSpace(userID))
-                    {
-                        command.Parameters.AddWithValue("@userID", userID);
-                    }
-                    if (!string.IsNullOrWhiteSpace(id))
-                    {
-                        command.Parameters.AddWithValue("@id", $"%{id}%");
-                    }
-                    if (!string.IsNullOrWhiteSpace(data_start))
-                    {
-                        command.Parameters.AddWithValue("@data_start", $"%{data_start}%");
-                    }
-                    if (!string.IsNullOrWhiteSpace(data_end))
-                    {
-                        command.Parameters.AddWithValue("@data_end", data_end);
-                    }
-
-                    DataTable dataTable = new DataTable();
-                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
-                    guna2DataGridView2.DataSource = dataTable;
-                }
-
-                connection.Close();
-            }
+            return null;
         }
 
-        private void oddaj_i_zaplac_Click(object sender, EventArgs e)
+        private void btnReturn_Click(object sender, EventArgs e)
         {
-            string userID = ""; // to dać metodę zdobycia ID uzytkownika
-            string id = ID_AUTA.Text;
-            string rejstracja = Nr_rejs.Text;
-            string Model = Model_aut.Text;
-            string Marka = Marka_auta.Text;
-            string cena = Cena_auta.Text;
-            string data_start = "";
-            string data_end = "";
-
-            // zmiana wartości dostępności w cars 
-
-            if (rejstracja == "" || Model == "" || Marka == "" || cena == "" || id == "" )
+            if (SessionManager.CurrentUser == null)
             {
-                MessageBox.Show("Błędne dane");
+                MessageBox.Show("Musisz być zalogowany, aby wypożyczać i oddawać samochód.");
                 return;
             }
-            StringBuilder queryBuilder = new StringBuilder("UPDATE Cars set IsAvailable = 1 where Id = @id;"); // Zamienć select na update by zmienić wart
+            if (!ValidateReturnInputs())
+            {
+                return;
+            }
 
-            string connectionString = "Data Source=database.sqlite;Version=3;";
+            Car car = GetCarByRegistrationNumber(Nr_rejs.Text);
+            if (car == null)
+            {
+                MessageBox.Show("Nie znaleziono samochodu o podanym numerze rejestracyjnym.");
+                return;
+            }
+
+            ReturnCar(car);
+
+            LoadRentedCars();
+            LoadReturnedCars();
+        }
+
+        private bool ValidateReturnInputs()
+        {
+            if (string.IsNullOrWhiteSpace(Nr_rejs.Text))
+            {
+                MessageBox.Show("Numer rejestracyjny nie może być pusty.");
+                return false;
+            }
+
+            return true;
+        }
+        private void ReturnCar(Car car)
+        {
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-
-                using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
+                using (var transaction = connection.BeginTransaction())
                 {
-                    // Dodaj parametry jeśli istnieją
-                    if (!string.IsNullOrWhiteSpace(id))
+                    try
                     {
-                        command.Parameters.AddWithValue("@id", id);
-                    }
+                        // Zaktualizuj dostępność samochodu
+                        string updateCarQuery = "UPDATE Cars SET IsAvailable = 'Tak' WHERE CarId = @CarId";
+                        using (var updateCarCommand = new SQLiteCommand(updateCarQuery, connection))
+                        {
+                            updateCarCommand.Parameters.AddWithValue("@CarId", car.CarId);
+                            updateCarCommand.ExecuteNonQuery();
+                        }
 
-                    DataTable dataTable = new DataTable();
-                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
+                        transaction.Commit();
+                        MessageBox.Show("Samochód został pomyślnie zwrócony.");
+                    }
+                    catch (Exception ex)
                     {
-                        adapter.Fill(dataTable);
+                        transaction.Rollback();
+                        MessageBox.Show("Wystąpił błąd podczas zwrotu samochodu: " + ex.Message);
                     }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
-                    //guna2DataGridView1.DataSource = dataTable;
-
                 }
-
                 connection.Close();
             }
-
-            //tutaj zmienia status Rentala na zakończony by pokazywał się w histori jakoś
-
-            refresh();
-
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void LoadRentedCars()
         {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"
+            SELECT r.RentalId, r.UserId, r.CarId, r.StartDate, r.EndDate, c.Brand, c.Model, c.RegistrationNumber
+            FROM Rentals r
+            JOIN Cars c ON r.CarId = c.CarId
+            WHERE r.UserId = @UserId AND c.IsAvailable = 'Nie'";
 
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", SessionManager.CurrentUser.Id);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+                        guna2DataGridView1.DataSource = dt;
+                    }
+                }
+                connection.Close();
+            }
+        }
+
+        private void LoadReturnedCars()
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"
+            SELECT r.RentalId, r.UserId, r.CarId, r.StartDate, r.EndDate, c.Brand, c.Model, c.RegistrationNumber
+            FROM Rentals r
+            JOIN Cars c ON r.CarId = c.CarId
+            WHERE r.UserId = @UserId AND c.IsAvailable = 'Tak'";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", SessionManager.CurrentUser.Id);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+                        guna2DataGridView2.DataSource = dt;
+                    }
+                }
+                connection.Close();
+            }
         }
     }
 }

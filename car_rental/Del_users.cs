@@ -32,8 +32,6 @@ namespace car_rental
             string pesel = txtBoxPesel.Text;
             string age = txtBoxAge.Text;
 
-
-            // Buduj zapytanie SQL z wykorzystaniem filtrów
             StringBuilder queryBuilder = new StringBuilder("SELECT Id,FirstName, LastName, Pesel, Age FROM Users WHERE 1=1");
             if (!string.IsNullOrWhiteSpace(firstName))
             {
@@ -59,7 +57,6 @@ namespace car_rental
 
                 using (var command = new SQLiteCommand(queryBuilder.ToString(), connection))
                 {
-                    // Dodaj parametry jeśli istnieją
                     if (!string.IsNullOrWhiteSpace(firstName))
                     {
                         command.Parameters.AddWithValue("@FirstName", $"%{firstName}%");
@@ -82,8 +79,6 @@ namespace car_rental
                     {
                         adapter.Fill(dataTable);
                     }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
                     guna2DataGridView1.DataSource = dataTable;
                 }
 
@@ -102,21 +97,13 @@ namespace car_rental
 
         public void ButtonsColor()
         {
-            // Definiuj kolor, który chcesz użyć
-            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); // Przykładowy kolor szesnastkowy
-
-            // Przechodź przez wszystkie kontrolki na formularzu
+            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); 
             foreach (Control control in this.Controls)
             {
-                // Sprawdź, czy kontrolka jest przyciskiem Guna.UI2
                 if (control is Guna2Button)
                 {
                     Guna2Button button = (Guna2Button)control;
-
-                    // Ustaw kolor tła przycisku
                     button.FillColor = buttonsColor;
-
-                    // Opcjonalnie: Ustaw kolor czcionki, jeśli potrzebujesz
                     button.ForeColor = Color.White;
                 }
             }
@@ -126,31 +113,23 @@ namespace car_rental
         {
             if (pictureBox.Image != null)
             {
-                // Utwórz kopię obrazu z PictureBox
                 Bitmap bmp = new Bitmap(pictureBox.Image);
-
-                // Odwróć obraz w poziomie
                 bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
-                // Ustaw odwrócony obraz z powrotem na PictureBox
                 pictureBox.Image = bmp;
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            // Pobierz wartości z TextBoxów.
             string id = txtBoxId.Text;
             string firstName = txtBoxFirstName.Text;
             string lastName = txtBoxLastName.Text;
             string pesel = txtBoxPesel.Text;
             string age = txtBoxAge.Text;
 
-            // Buduj zapytanie SQL z wykorzystaniem filtrów.
             StringBuilder queryBuilder = new StringBuilder("DELETE FROM Users WHERE ");
             List<SQLiteParameter> parameters = new List<SQLiteParameter>();
 
-            // Dodaj warunki do zapytania SQL na podstawie dostarczonych danych.
             if (!string.IsNullOrEmpty(id))
             {
                 queryBuilder.Append("Id = @Id");
@@ -181,7 +160,6 @@ namespace car_rental
                     parameters.Add(new SQLiteParameter("@Age", age));
                 }
 
-                // Jeżeli nie podano żadnych danych, anuluj operację.
                 if (!conditions.Any())
                 {
                     MessageBox.Show("Proszę podać przynajmniej jedno kryterium wyszukiwania.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -191,7 +169,6 @@ namespace car_rental
                 queryBuilder.Append(string.Join(" AND ", conditions));
             }
 
-            // Przygotuj połączenie i zapytanie do bazy danych.
             string connectionString = "Data Source=database.sqlite;Version=3;";
             using (var connection = new SQLiteConnection(connectionString))
             {
@@ -200,7 +177,6 @@ namespace car_rental
                 {
                     command.Parameters.AddRange(parameters.ToArray());
 
-                    // Wykonaj zapytanie i sprawdź wynik.
                     int result = command.ExecuteNonQuery();
                     if (result > 0)
                     {
@@ -213,8 +189,6 @@ namespace car_rental
                 }
                 connection.Close();
             }
-
-            // Odśwież listę użytkowników.
             RefreshUserList();
         }
 
@@ -232,26 +206,7 @@ namespace car_rental
                     {
                         adapter.Fill(dataTable);
                     }
-
-                    // Ustaw wyniki jako źródło danych dla DataGridView
                     guna2DataGridView1.DataSource = dataTable;
-                }
-
-                connection.Close();
-            }
-        }
-
-        private void DeleteUserById(int userId)
-        {
-            string connectionString = "Data Source=ścieżka_do_twojej_bazy_danych.sqlite;Version=3;";
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-                string query = "DELETE FROM Users WHERE Id = @Id";
-                using (var command = new SQLiteCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Id", userId);
-                    command.ExecuteNonQuery();
                 }
                 connection.Close();
             }

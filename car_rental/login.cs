@@ -24,32 +24,19 @@ namespace car_rental
         {
             if (pictureBox.Image != null)
             {
-                // Utwórz kopię obrazu z PictureBox
                 Bitmap bmp = new Bitmap(pictureBox.Image);
-
-                // Odwróć obraz w poziomie
                 bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
-                // Ustaw odwrócony obraz z powrotem na PictureBox
                 pictureBox.Image = bmp;
             }
         }
         public void ButtonsColor()
         {
-            // Definiuj kolor, który chcesz użyć
-            Color buttonsColor = ColorTranslator.FromHtml("#714A4A"); // Przykładowy kolor szesnastkowy
-
-            // Przechodź przez wszystkie kontrolki na formularzu
+            Color buttonsColor = ColorTranslator.FromHtml("#714A4A");
             foreach (Control control in this.Controls)
             {
-                // Sprawdź, czy kontrolka jest przyciskiem Guna.UI2
                 if (control is Guna.UI2.WinForms.Guna2Button button)
                 {
-
-                    // Ustaw kolor tła przycisku
                     button.FillColor = buttonsColor;
-
-                    // Opcjonalnie: Ustaw kolor czcionki, jeśli potrzebujesz
                     button.ForeColor = Color.White;
                 }
             }
@@ -73,7 +60,7 @@ namespace car_rental
                 using (SQLiteConnection conn = new SQLiteConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT Id, FirstName, LastName, Pesel, Age, isAdmin FROM Users WHERE Username = @Username AND Password = @Password";
+                    string sql = "SELECT Id, FirstName, LastName, Pesel, Age, DrivingLicense, isAdmin FROM Users WHERE Username = @Username AND Password = @Password";
 
                     using (SQLiteCommand command = new SQLiteCommand(sql, conn))
                     {
@@ -92,6 +79,7 @@ namespace car_rental
                                     LastName = reader.GetString(reader.GetOrdinal("LastName")),
                                     Pesel = reader.IsDBNull(reader.GetOrdinal("Pesel")) ? null : reader.GetString(reader.GetOrdinal("Pesel")),
                                     Age = reader.IsDBNull(reader.GetOrdinal("Age")) ? 0 : reader.GetInt32(reader.GetOrdinal("Age")),
+                                    DrivingLicense = reader.IsDBNull(reader.GetOrdinal("DrivingLicense")) ? null : reader.GetString(reader.GetOrdinal("DrivingLicense")),
                                     isAdmin = reader.GetString(reader.GetOrdinal("isAdmin"))
                                 };
                                 return user;
@@ -102,11 +90,11 @@ namespace car_rental
             }
             catch (SQLiteException ex)
             {
-                Console.WriteLine("SQLite exception: " + ex.Message);
+                Console.WriteLine("Wyjątek SQLite: " + ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("General exception: " + ex.Message);
+                Console.WriteLine("Ogólny wyjątek: " + ex.Message);
             }
             return null;
         }
@@ -129,7 +117,7 @@ namespace car_rental
             if (user != null)
             {
                 SessionManager.CurrentUser = user;
-                Console.WriteLine("Sesja zalogowana: " + SessionManager.CurrentUser.isAdmin);
+                Console.WriteLine("Sesja zalogowana: " + SessionManager.CurrentUser.FirstName + " " + SessionManager.CurrentUser.Pesel);
                 MessageBox.Show("Zalogowano pomyślnie jako: " + user.Username);
                 main_frame main_Frame = new main_frame();
                 this.Close();
